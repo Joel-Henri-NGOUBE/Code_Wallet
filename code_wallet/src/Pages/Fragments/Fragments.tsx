@@ -1,12 +1,10 @@
-import { Link } from "react-router-dom";
+import Header from "../../Components/Header/Header"
 
 export default function Fragments(){
     return (
     <>
+        <Header />
         <p>Bonjour les fragments</p>
-        <Link to="/">Fragments</Link>
-        <Link to="/tags">Tags</Link>
-        <Link to="/info">Info</Link>
     </>
     )
 }
