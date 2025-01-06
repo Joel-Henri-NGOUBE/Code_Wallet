@@ -10,7 +10,7 @@
     row-gap: 30px;
     align-items: center;
 }
-.title{
+.tags-page .title{
     position: relative;
     display: flex;
     justify-content: center;
@@ -21,11 +21,11 @@
     width: 80%;
 }
 
-.title h1{
+.tags-page .tags-page .title h1{
     font-weight: 600;
 }
 
-.title > button{
+.tags-page .title > button{
     position: absolute;
     right: 40px;
     bottom: auto;
@@ -36,7 +36,7 @@
     background-color: var(--primary-purple);
 }
 
-.switch-display{
+.tags-page .switch-display{
     display: flex;
     column-gap: 10px;
     background-color: var(--gray);
@@ -46,7 +46,7 @@
 
 }
 
-.switch-display #all-tags{
+.tags-page .switch-display #all-tags{
     color: var(--white);
     background-color: var(--primary-purple);
     border-radius: 20px;
@@ -54,14 +54,14 @@
     
 }
 
-.switch-display #per-fragment{
+.tags-page .switch-display #per-fragment{
     background-color: var(--gray);
     border-radius: 20px;
     padding: 10px 20px;
     
 }
 
-.tags {
+.tags-page .tags {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,7 +69,7 @@
     margin-top: 20px;
 }
 
-.tags2 {
+.tags-page .tags2 {
     display: flex;
     flex-direction: column;
     row-gap: 50px;
@@ -79,21 +79,21 @@
     margin-top: 20px;
 }
 
-.tags2 .fragment{
+.tags-page .tags2 .fragment{
     display: flex;
     flex-direction: column;
     row-gap: 20px;
 
 }
 
-.tags2 .fragment .tags-wrapper2{
+.tags-page .tags2 .fragment .tags-wrapper2{
     display: flex;
     flex-flow: row wrap;
     column-gap: 20px;
 
 }
 
-.tags-wrapper{
+.tags-page .tags-wrapper{
     display: flex;
     flex-flow: row wrap;
     /* justify-content: center; */
@@ -105,7 +105,7 @@
     width: max-content;
 }
 
-.tag{
+.tags-page .tag{
     color: var(--primary-purple);
     background-color: var(--white);
     border: 1px solid var(--primary-purple);
@@ -115,7 +115,7 @@
      
 }
 
-.modal-container{
+.tags-page .modal-container{
     position: fixed;
     display: flex;
     justify-content: center;
@@ -126,7 +126,7 @@
     background-color: rgba(0,0,0,0.5);
 }
 
-.modal-new, .modal-edit{
+.tags-page .modal-new, .modal-edit{
     display: flex;
     position: relative;
     flex-direction: column;
@@ -141,7 +141,7 @@
     
 }
 
-.modal-new .form, .modal-edit .form{
+.tags-page .modal-new .form, .modal-edit .form{
     display: flex;
     /* width: 50%; */
     margin-left: 20px;
@@ -151,18 +151,18 @@
     align-items: center;
 }
 
-.modal-new .form input, .modal-edit .form input{
+.tags-page .modal-new .form input, .modal-edit .form input{
     border-radius: 20px;
     padding: 5px 15px;
     width: 300px;
     border: 1px solid var(--black)
 }
 
-.modal-new .form input::placeholder, .modal-edit .form input::placeholder{
+.tags-page .modal-new .form input::placeholder, .modal-edit .form input::placeholder{
     color: #E3E3E3;
 }
 
-.modal-new button, .modal-edit button{
+.tags-page .modal-new button, .modal-edit button{
     padding: 10px 20px;
     border-radius: 10px;
     border: 1px solid var(--white);
@@ -170,28 +170,28 @@
     background-color: var(--primary-green);
 }
 
-.modal-new button{
+.tags-page .modal-new button{
     margin-top: 10px;
 }
 
-.modal-edit button#delete{
+.tags-page .modal-edit button#delete{
     background-color: var(--red);
 }
 
-.modal-edit .buttons{
+.tags-page .modal-edit .buttons{
     display: flex;
     justify-content: space-between;
     width: 420px;
     margin-top: 10px;
 }
 
-.close{
+.tags-page .close{
     position: absolute;
     top: 20px;
     right: 20px;
 }
 
-[for="tag-name"], [for="tag-name2"]{
+.tags-page [for="tag-name"], [for="tag-name2"]{
     font-weight: 500;
 }
 
