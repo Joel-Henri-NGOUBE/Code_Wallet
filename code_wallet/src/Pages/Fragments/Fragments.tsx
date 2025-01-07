@@ -3,7 +3,9 @@ import "./fragments.css"
 import Eye from "../../assets/Eye.svg"
 import Remove from "../../assets/remove.svg"
 import Rows from "../../assets/rows.svg"
-import Sqaures from "../../assets/squares.svg"
+// import RowsWhite from "../../assets/rows-white.svg"
+// import Squares from "../../assets/squares.svg"
+import SquaresWhite from "../../assets/squares-white.svg"
 // import CodeImage from "../../assets/remove.svg"
 
 export default function Fragments(){
@@ -27,8 +29,8 @@ export default function Fragments(){
             <Header />
             <div className="actions">
                 <div className="switch-display">
-                <span id="rows"><img src={Rows} alt="" /></span>
-                <span id="squares"><img src={Sqaures} alt="" /></span>
+                    <span id="rows"><img src={Rows} alt="rows" /></span>
+                    <span id="squares"><img src={SquaresWhite} alt="squares" /></span>
                 </div>
                 <button id="new">New</button>
             </div>
@@ -49,6 +51,32 @@ export default function Fragments(){
                         </div>
                     </div>
                 </div>))}
+            </div>
+            <div className="modal-container" style={{display: "none"}}>
+                <div className="modal-code">
+                    <h2>The actual title</h2>
+                    <p className="close">X</p>
+                    <div className="code">
+                        <p id="code">
+                            pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+                            ppppppppppppppppp
+                            ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+                            pppppppppppppppppppppppp
+                            pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+                            pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+                            pppppppppppppppp
+                            ppppppppppppppppppppppppppp
+                            ppppppp
+                            pppppppppp
+                            pppp
+                            pppppppppppp
+                            pppppppppppppppppppppppp
+                            pppppppppppppppppppppppppppppppp
+                            pppppppppppp
+                        </p>
+                    </div>
+                    <button id="copy">Copy</button>
+                </div>
             </div>
         </div>
     </>

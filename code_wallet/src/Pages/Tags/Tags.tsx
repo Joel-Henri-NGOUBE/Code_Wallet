@@ -38,8 +38,8 @@ export default function Tags(){
             </div>))}
         </div>
 
-        <div className="modal-container">
-            {/* <div className="modal-new">
+        <div className="modal-container" style={{display: "none"}}>
+            {/* <div className="modal-new" style={{display: "none"}}>
                 <h2>New tag</h2>
                 <p className="close">X</p>
                 <div className="form">
@@ -48,8 +48,8 @@ export default function Tags(){
                 </div>
                 <button>Save</button>
             </div> */}
-            <div className="modal-edit">
-            <h2>Edit tag</h2>
+            <div className="modal-edit" style={{display: "none"}}>
+                <h2>Edit tag</h2>
                 <p className="close">X</p>
                 <div className="form">
                     <label htmlFor="tag-name2">TagName</label>

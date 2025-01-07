@@ -102,3 +102,92 @@
     background-color: var(--primary-green);
 }
 
+.fragments-page .actions .switch-display{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    background-color: var(--secondary-dark-gray);
+    height: max-content;
+    width: max-content;
+    border-radius: 7px;
+}
+
+/* .tags-page .switch-display{
+
+
+} */
+
+.fragments-page .switch-display #rows{
+    background-color: var(--secondary-dark-gray);
+    /* background-color: var(--primary-purple); */
+    color: var(--white);
+    border-radius: 7px;
+    padding: 5px 5px 0;
+    height: calc(max-content - 5px);
+    width: max-content;
+}
+
+.fragments-page .switch-display #squares{
+    background-color: var(--primary-purple);
+    border-radius: 7px;
+    padding: 5px 5px 0;
+    height: fit-content;
+    width: max-content;
+}
+
+.fragments-page .modal-container{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+}
+
+.fragments-page .modal-code{
+    position: relative;
+    width: 400px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+    background-color: var(--white);
+    margin: auto;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.fragments-page .modal-code .close{
+    position: absolute;
+    right: 30px;
+    top: 25px;
+}
+
+.fragments-page .modal-code h2{
+    font-weight: 600;
+}
+
+.fragments-page .modal-code .code{
+    display: flex;
+    border: 2px solid var(--dark-gray);
+    border-radius: 20px;
+    font-size: 0.6rem;
+    padding: 20px;
+    width: 100%;
+    height: 350px;
+    overflow: auto;
+}
+
+.fragments-page .modal-code button{
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--white);
+    color: var(--white);
+    background-color: var(--primary-green);
+    align-self: flex-end;
+}
+
+/* .fragments-page .switch-display #squares svg{
+    color: var(--white)
+} */
+
