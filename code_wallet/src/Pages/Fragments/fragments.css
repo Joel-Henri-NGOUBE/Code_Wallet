@@ -1,0 +1,104 @@
+@import url("../../styles/variables.css");
+
+.fragments-page{
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    align-items: center;
+}
+
+.fragments-page .fragment{
+    width: 251px;
+    height: 280px;
+}
+
+.fragments-page .fragment .top .icons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fragments-page .fragment .top-background{
+    background-image: url("../../assets/236235597_11075021.jpg");
+    background-position: center;
+    background-size: 94%;
+    background-repeat: no-repeat;
+}
+
+.fragments-page .fragment .top{
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    padding: 18px 16px;
+    border: 1px solid var(--black);
+    border-bottom: 0px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    /* background: contain no-repeat url("../../assets/236235597_11075021.jpg"), rgba(0, 0, 0, 0.5) ; */
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.fragments-page .fragment .top .fragment-title{
+    font-weight: 600;
+    color: var(--gray);
+}
+
+.fragments-page .fragment .bottom{
+    display: flex;
+    margin: auto;
+    padding: 20px 30px;
+    box-sizing: content-box;
+    border: 1px solid var(--black);
+    /* outline: 1px solid var(--black); */
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.fragments-page .fragment .bottom .tags{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    /* align-content: flex-start; */
+    /* padding: 0 auto; */
+    /* margin: 0 auto; */
+    column-gap: 5px;
+    row-gap: 20px;
+    width: max-content;
+}
+
+.fragments-page .tag{
+    color: var(--primary-purple);
+    background-color: var(--white);
+    border: 1px solid var(--primary-purple);
+    font-size: 10px;
+    font-weight: 500;
+    border-radius: 25px;
+    padding: 5px 20px;
+}
+
+.fragments-page .fragments{
+    width: calc(100% - 100px);
+    display: flex;
+    flex-flow: row wrap;
+    /* align-content: center; */
+    gap: 30px;
+}
+
+.fragments-page .fragments > *{
+    margin: auto;
+}
+
+.fragments-page .actions{
+    display: flex;
+    width: calc(100% - 100px);
+    justify-content: space-between;
+}
+
+.fragments-page .actions button{
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--white);
+    color: var(--white);
+    background-color: var(--primary-green);
+}
+
