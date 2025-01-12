@@ -91,3 +91,9 @@ a{
 button{
   cursor: pointer;
 }
+
+::-webkit-scrollbar{
+  /* width: 5px; */
+  /* visibility: hidden; */
+  display: none;
+}

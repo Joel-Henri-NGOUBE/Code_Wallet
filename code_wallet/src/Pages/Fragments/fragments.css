@@ -44,15 +44,24 @@
 }
 
 .fragments-page .fragment .bottom{
+    /* position: relative; */
     display: flex;
     margin: auto;
     padding: 20px 30px;
-    box-sizing: content-box;
+    box-sizing: initial;
     border: 1px solid var(--black);
+    height: 109px;
+    overflow-y: auto;
+    /* scrollbar-gutter: stable; */
     /* outline: 1px solid var(--black); */
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
+  
+  /* ::-webkit-scrollbar-thumb{
+    background-color: var(--primary-green);
+    border-radius: 5px;
+  } */
 
 .fragments-page .fragment .bottom .tags{
     display: flex;
@@ -64,9 +73,13 @@
     column-gap: 5px;
     row-gap: 20px;
     width: max-content;
+    margin: auto;
 }
 
 .fragments-page .tag{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: var(--primary-purple);
     background-color: var(--white);
     border: 1px solid var(--primary-purple);
@@ -74,6 +87,10 @@
     font-weight: 500;
     border-radius: 25px;
     padding: 5px 20px;
+    min-height: 23px;
+    max-width: 100%;
+    text-align: center;
+    word-break: break-word;
 }
 
 .fragments-page .fragments{

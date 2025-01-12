@@ -17,6 +17,7 @@
     align-items: center;
     color: var(--white);
     background-color: var(--primary-purple);
+    padding: 10px 0;
     height: 80px;
     width: 80%;
 }
@@ -46,6 +47,10 @@
 
 }
 
+.tags-page .switch-display > *{
+    cursor: pointer;
+}
+
 .tags-page .switch-display #all-tags{
     color: var(--white);
     background-color: var(--primary-purple);
@@ -61,11 +66,33 @@
     
 }
 
+.tags-page .slider{
+    width: 80%;
+    display: flex;
+    overflow-x: hidden;
+}
+
+.tags-page .slider .slider-wrapper{
+    width: 100%;
+    display: flex;
+    /* overflow-x: hidden; */
+}
+
+.tags-page .slider .slider-wrapper> *{
+    flex-shrink: 0
+}
+
 .tags-page .tags {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
+    /* justify-content: center;
+    align-items: center; */
+    outline: 2px solid var(--gray);
+    border-radius: 10px;
+    padding: 10px;
+    margin: auto;
+    width: calc(100% - 3px);
+    height: 70%; /* Origine potentielle d'une erreur*/
+    overflow: auto;
     margin-top: 20px;
 }
 
@@ -75,8 +102,110 @@
     row-gap: 50px;
     /* justify-content: center; */
     /* align-items: center; */
-    width: 80%;
+    /* outline: 1px solid var(--primary-purple); */
+    padding: 10px;
+    width: 100%;
+    height: 40%;
+    /* overflow: auto; */
     margin-top: 20px;
+}
+
+.slide{
+    animation-name: slide;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.slide-back{
+    animation-name: slideBack;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.all-tags-increase{
+    animation-name: all-tags-increase;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.all-tags-decrease{
+    animation-name: all-tags-decrease;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.per-fragment-increase{
+    animation-name: per-fragment-increase;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.per-fragment-decrease{
+    animation-name: per-fragment-decrease;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+/* .slide, .slide-back, .all-tags-increase, .all-tags-decrease, .per-fragment-decrease, .per-fragment-increase{
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+} */
+
+@keyframes slide {
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slideBack {
+    0%{
+        transform: translateX(-100%);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+
+@keyframes all-tags-decrease {
+    100%{
+        background-color: var(--gray);
+        color: var(--black);
+    }
+}
+
+@keyframes all-tags-increase {
+    0%{
+        background-color: var(--gray);
+        color: var(--black);
+    }
+    100%{
+        background-color: var(--primary-purple);
+        color: var(--white);
+    }
+}
+
+@keyframes per-fragment-decrease {
+    100%{
+        background-color: var(--gray);
+        color: var(--black);
+    }
+}
+
+@keyframes per-fragment-increase {
+    100%{
+        background-color: var(--primary-purple);
+        color: var(--white);
+    }
 }
 
 .tags-page .tags2 .fragment{
@@ -90,7 +219,12 @@
     display: flex;
     flex-flow: row wrap;
     column-gap: 20px;
-
+    row-gap: 20px;
+    border-radius: 10px;
+    outline: 2px solid var(--gray);
+    padding: 10px;
+    max-height: 200px;
+    overflow: auto;
 }
 
 .tags-page .tags-wrapper{
@@ -99,7 +233,8 @@
     /* justify-content: center; */
     /* align-content: flex-start; */
     /* padding: 0 auto; */
-    /* margin: 0 auto; */
+    height: max-content;
+    margin: auto;
     column-gap: 50px;
     row-gap: 20px;
     width: max-content;
@@ -112,7 +247,10 @@
     font-weight: 500;
     border-radius: 25px;
     padding: 10px 40px;
-     
+    max-width: 100%;
+    min-height: 45px;
+    word-break: break-word;
+    text-align: center;
 }
 
 .tags-page .modal-container{

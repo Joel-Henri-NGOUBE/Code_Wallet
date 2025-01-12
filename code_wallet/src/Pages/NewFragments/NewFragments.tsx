@@ -1,6 +1,7 @@
 import Header from "../../Components/Header/Header"
 import "./newfragments.css"
 import Remove from "../../assets/remove.svg"
+import Plus from "../../assets/plus.svg"
 
 export default function NewFragments(){
    const tags = ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]
@@ -23,6 +24,9 @@ export default function NewFragments(){
                     {tags.map((tag, index) => <span key={index} className="tag">{tag}<img src={Remove} alt="remove" /></span>)}
                     </div>
                     <button>+ Add tag</button>
+                    <div className="tags-list" style={{display: "none"}}>
+                    {tags.map((tag, index) => <span key={index} className="tag">{tag}<img src={Plus} alt="plus" /></span>)}
+                    </div>
                 </div>
             </div>
             <div className="code">
