@@ -1,5 +1,5 @@
-import Eye from "../../assets/Eye.svg"
-import Remove from "../../assets/remove.svg"
+import Eye from "../../../assets/Eye.svg"
+import Remove from "../../../assets/remove.svg"
 
 export default function Fragment({index, fragment}: {index: number, fragment: IFragment}){
     return(

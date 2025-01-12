@@ -9,7 +9,7 @@ import NewFragments from "./Pages/NewFragments/NewFragments";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Tags />,
+    element: <NewFragments />,
     children: [
       {
         path: "/tags",

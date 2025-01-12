@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Header from "../../Components/Header/Header"
 // import EditTag from "../../Components/Modals/EditTag";
-// import "./tags.css"
+import "./tags.css"
 // import NewTag from "../../Components/Modals/NewTag";
 // import AllTags from "../../Components/Sliders/Tags/Parts/allTags";
 // import TagsPerFragment from "../../Components/Sliders/Tags/Parts/tagPerFragments";

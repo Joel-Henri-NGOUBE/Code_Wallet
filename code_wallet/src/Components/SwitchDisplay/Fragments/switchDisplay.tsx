@@ -1,5 +1,5 @@
-import Rows from "../../assets/rows.svg"
-import SquaresWhite from "../../assets/squares-white.svg"
+import Rows from "../../../assets/rows.svg"
+import SquaresWhite from "../../../assets/squares-white.svg"
 
 export default function SwitchDisplay(){
     return(
