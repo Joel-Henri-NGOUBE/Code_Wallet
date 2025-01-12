@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { tagEditor } from "../../interfaces/tagEditor";
+import { tagEditor } from "../../../interfaces/tagEditor";
 
 export default function NewTag({tagValue, setTagValue}: tagEditor ): ReactElement{
 

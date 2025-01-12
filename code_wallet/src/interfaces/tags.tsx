@@ -5,6 +5,6 @@ import { tagsPerFragment } from "./tagsPerFragmentList";
 export interface Tags extends tagsList, tagsPerFragment{
     tags: string[],
     setTags: Dispatch<SetStateAction<string[]>>,
-    tagsPerFragment: Fragment[],
-    setTagsPerFragment: Dispatch<SetStateAction<Fragment[]>>
+    tagsPerFragment: IFragment[],
+    setTagsPerFragment: Dispatch<SetStateAction<IFragment[]>>
 }

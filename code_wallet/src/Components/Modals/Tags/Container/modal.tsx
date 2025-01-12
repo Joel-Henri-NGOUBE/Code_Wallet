@@ -1,4 +1,4 @@
-import { tagEditor } from "../../../interfaces/tagEditor";
+import { tagEditor } from "../../../../interfaces/tagEditor";
 import EditTag from "../EditTag";
 import NewTag from "../NewTag";
 

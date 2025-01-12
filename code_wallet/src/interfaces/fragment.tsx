@@ -1,4 +1,4 @@
-interface Fragment{
+interface IFragment{
     title: string,
     tags: string[]
 }

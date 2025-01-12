@@ -8,7 +8,7 @@ import Header from "../../Components/Header/Header"
 import SwitchDisplay from "../../Components/SwitchDisplay/Tags/switchDisplay";
 import Title from "../../Components/Titles/Tags";
 import Slider from "../../Components/Sliders/Tags/Slider/slider";
-import Modal from "../../Components/Modals/Container.tsx/modal";
+import Modal from "../../Components/Modals/Tags/Container/modal";
 
 export default function Tags(){
 
@@ -23,7 +23,7 @@ export default function Tags(){
     
     const [tags, setTags] = useState<string[]>(tagsSample)
     
-    const [tagsPerFragment, setTagsPerFragment] = useState<Fragment[]>(tagsPerFragmentSample)
+    const [tagsPerFragment, setTagsPerFragment] = useState<IFragment[]>(tagsPerFragmentSample)
 
 
     
