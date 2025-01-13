@@ -23,10 +23,7 @@ export default function Tags(){
     
     const [tags, setTags] = useState<string[]>(tagsSample)
     
-    const [tagsPerFragment, setTagsPerFragment] = useState<IFragment[]>(tagsPerFragmentSample)
-
-
-    
+    const [tagsPerFragment, setTagsPerFragment] = useState<IFragment[]>(tagsPerFragmentSample) 
     
     return (
         <div className="tags-page">
