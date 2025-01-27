@@ -1,10 +1,10 @@
 import { ReactElement } from "react";
 import { tagEditor } from "../../../interfaces/tagEditor";
 
-export default function EditTag({tagValue, setTagValue}: tagEditor ): ReactElement{
+export default function EditTag({tagValue, setTagValue, modalsVisibility, setModalsVisibility}: tagEditor ): ReactElement{
 
     return (
-        <div className="modal-edit" style={{display: "none"}}>
+        <div className="modal-edit" style={modalsVisibility.edit ? {display: "flex"} : {display: "none"}}>
             <h2>Edit tag</h2>
             <p className="close">X</p>
             <div className="form">

@@ -1,10 +1,10 @@
 import { ReactElement } from "react";
 import { tagEditor } from "../../../interfaces/tagEditor";
 
-export default function NewTag({tagValue, setTagValue}: tagEditor ): ReactElement{
+export default function NewTag({tagValue, setTagValue, modalsVisibility, setModalsVisibility}: tagEditor ): ReactElement{
 
     return (
-        <div className="modal-new" style={{display: "none"}}>
+        <div className="modal-new" style={modalsVisibility.new ? {display: "flex"} : {display: "none"}}>
             <h2>New tag</h2>
             <p className="close">X</p>
             <div className="form">

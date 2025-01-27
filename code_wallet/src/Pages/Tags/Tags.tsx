@@ -9,6 +9,7 @@ import SwitchDisplay from "../../Components/SwitchDisplay/Tags/switchDisplay";
 import Title from "../../Components/Titles/Tags";
 import Slider from "../../Components/Sliders/Tags/Slider/slider";
 import Modal from "../../Components/Modals/Tags/Container/modal";
+import { ModalsVisibility } from "../../types/modalsVisibility";
 
 export default function Tags(){
 
@@ -20,29 +21,50 @@ export default function Tags(){
     ]
     
     const [tagValue, setTagValue] = useState<string>("")
+
+    // const [currentTagIndex, setCurrentTagIndex] = useState< number | null >(null)
     
     const [tags, setTags] = useState<string[]>(tagsSample)
     
-    const [tagsPerFragment, setTagsPerFragment] = useState<IFragment[]>(tagsPerFragmentSample) 
+    const [tagsPerFragment, setTagsPerFragment] = useState<IFragment[]>(tagsPerFragmentSample)
+
+    const [modalsVisibility, setModalsVisibility] = useState<ModalsVisibility>({edit: false, new: false})
+
+    // const [clickManager, setClickManager] = useState<[]>()
     
     return (
         <div className="tags-page">
             <Header />
             
-            <Title />
+            <Title
+                tagValue={tagValue}
+                setTagValue={setTagValue}
+                modalsVisibility={modalsVisibility}
+                setModalsVisibility={setModalsVisibility} 
+            />
 
             <SwitchDisplay />
 
             <Slider 
                 tags={tags}
                 tagsPerFragment={tagsPerFragment}
-                setTags={setTags}
-                setTagsPerFragment={setTagsPerFragment}
-            />
-
-            <Modal 
                 tagValue={tagValue}
                 setTagValue={setTagValue}
+                // currentTagIndex={currentTagIndex}
+                // setCurrentTagIndex={setCurrentTagIndex}
+                setTags={setTags}
+                setTagsPerFragment={setTagsPerFragment}
+                modalsVisibility={modalsVisibility}
+                setModalsVisibility={setModalsVisibility}
+            />
+
+            <Modal
+                tagValue={tagValue}
+                setTagValue={setTagValue}
+                // currentTagIndex={currentTagIndex}
+                // setCurrentTagIndex={setCurrentTagIndex}
+                modalsVisibility={modalsVisibility}
+                setModalsVisibility={setModalsVisibility}
             />
         </div>
     )

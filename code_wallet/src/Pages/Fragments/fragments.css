@@ -178,6 +178,10 @@
     background-color: var(--primary-green);
 }
 
+.fragments-page .actions a{
+  color: white
+}
+
 .fragments-page .actions .switch-display{
     display: flex;
     align-items: center;

@@ -2,7 +2,13 @@ import { ReactElement } from "react";
 // import { tagEditor } from "../../interfaces/tagEditor";
 import { tagsPerFragment } from "../../../../interfaces/tagsPerFragmentList";
 
-export default function TagsPerFragment({tagsPerFragment, setTagsPerFragment}: tagsPerFragment ): ReactElement{
+export default function TagsPerFragment({tagValue, setTagValue, tagsPerFragment, setTagsPerFragment, modalsVisibility, setModalsVisibility}: tagsPerFragment ): ReactElement{
+    
+    function handleTagClick(tag: string){
+        setModalsVisibility({edit: true, new: modalsVisibility.new});
+        setTagValue(tag)
+        // console.log(modalsVisibility)
+    }
 
     return (
         <div className="tags2">     
@@ -10,7 +16,7 @@ export default function TagsPerFragment({tagsPerFragment, setTagsPerFragment}: t
                 <div className="fragment">
                     <h2 className="fragment-title">{fragment.title}</h2>
                     <div className="tags-wrapper2">
-                    {fragment.tags.map((tag, index) => <span key={index} className="tag">{tag}</span>)}
+                    {fragment.tags.map((tag, index) => <span key={index} className="tag" onClick={() => {handleTagClick(fragment.tags[index])}}>{tag}</span>)}
                     </div>
                 </div>
             ))}
