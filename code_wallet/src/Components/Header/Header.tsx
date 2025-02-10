@@ -12,6 +12,7 @@ export default function Header(){
             <Link to="/">Fragments</Link>
             <Link to="/tags">Tags</Link>
             <Link to="/info">Info</Link>
+            {/* <Link to="/newroute/1">New Route</Link> */}
         </div>
     </div>
     )

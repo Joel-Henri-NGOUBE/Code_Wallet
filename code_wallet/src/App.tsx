@@ -9,6 +9,7 @@ import Tags from "./Pages/Tags/Tags";
 import Info from "./Pages/Info/Info";
 import NewFragments from "./Pages/NewFragments/NewFragments";
 import Header from './Components/Header/Header';
+import NewRoute from './Pages/newRoute';
 // import Header from "./Components/Header/Header";
 
 export default function App() {
@@ -21,7 +22,12 @@ return (
             <Route path="/" element={<Fragments />} />
             <Route path="/tags" element={<Tags />} />
             <Route path="/info" element={<Info />} />
-            <Route path="/newfragments" element={<NewFragments />} />
+            <Route path="/newfragments" element={<NewFragments />}>
+              <Route path="/newfragments/:id" element={<NewFragments />} />
+            </Route>
+            {/* <Route path="/newroute" element={<NewRoute />}>
+              <Route path="/newroute/:id" element={<NewRoute />} />
+            </Route> */}
           </>
     }
     // about={<Route path="/" element={<AboutScreen />} />}

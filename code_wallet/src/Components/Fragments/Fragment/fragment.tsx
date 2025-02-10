@@ -1,8 +1,20 @@
-import { useEffect } from "react"
+import { Dispatch, MouseEvent, SetStateAction, useEffect } from "react"
 import Eye from "../../../assets/Eye.svg"
 import Remove from "../../../assets/remove.svg"
+import { Link } from "react-router-dom";
 
-export default function Fragment({index, fragment, click}: {index: number, fragment: IFragment, click: boolean[]}){
+interface FragmentProp{
+    index: number,
+    fragment: IFragment,
+    setFragments: Dispatch<SetStateAction<IFragment[]>>,
+    click: boolean[],
+    setViewClick: Dispatch<SetStateAction<boolean>>,
+    code: string,
+    setCode: Dispatch<SetStateAction<string>>
+    setModalValues: Dispatch<SetStateAction<IFragment>>
+}
+
+export default function Fragment({index, fragment, click, setModalValues, setViewClick, code, setCode, setFragments}: FragmentProp){
     
     useEffect(() => {
         if(!click[1]){
@@ -20,13 +32,25 @@ export default function Fragment({index, fragment, click}: {index: number, fragm
         }
     }, [click])
 
+    function handleClickEye(e: MouseEvent, fragment: IFragment){
+        e.preventDefault()
+        if(fragment.code) setCode(fragment.code)
+        setViewClick(true)
+        setModalValues(fragment)
+    }
+
+    function handleClickRemove(e: MouseEvent, fragment: IFragment){
+        e.preventDefault()
+        setFragments((f: IFragment[]) => f.filter((frag) => frag.id !== fragment.id))
+    }
+
     return(
-        click[1] ? (<div className="fragment" key={index}>
+        click[1] ? (<Link to="newfragments"><div className="fragment" key={index}>
                 <div className="top-background">
                     <div className="top">
                         <div className="icons">
-                            <img src={Eye} alt="eye" />
-                            <img src={Remove} alt="remove" width={20}/>
+                            <img src={Eye} alt="eye" onClick={(e) => handleClickEye(e, fragment)}/>
+                            <img src={Remove} alt="remove" width={20} onClick={(e: MouseEvent) => handleClickRemove(e, fragment)}/>
                         </div>
                         <span className="fragment-title">{fragment.title}</span>
                     </div>
@@ -36,8 +60,8 @@ export default function Fragment({index, fragment, click}: {index: number, fragm
                     {fragment.tags.map((tag, index) => <span key={index} className="tag">{tag}</span>)}
                     </div>
                 </div>
-            </div>) :
-        (<div className="fragment2" key={index}>
+            </div></Link>) :
+        (<Link to="newfragments"><div className="fragment2" key={index}>
                 <div className="left">
                         <span className="fragment-title">{fragment.title}</span>
                 </div>
@@ -51,6 +75,6 @@ export default function Fragment({index, fragment, click}: {index: number, fragm
                     </div>
                 </div>
                 
-            </div>)     
+            </div></Link>)     
     )
 }

@@ -6,7 +6,7 @@ export default function EditTag({tagValue, setTagValue, modalsVisibility, setMod
     return (
         <div className="modal-edit" style={modalsVisibility.edit ? {display: "flex"} : {display: "none"}}>
             <h2>Edit tag</h2>
-            <p className="close">X</p>
+            <p className="close" onClick={() => setModalsVisibility(mV => ({edit: false, new: mV.new}))}>X</p>
             <div className="form">
                 <label htmlFor="tag-name2">TagName</label>
                 <input type="text" name="tag-name2" id="tag-name2" placeholder="TagName..." value={tagValue} onChange={(e) => setTagValue(e.target.value)}/>

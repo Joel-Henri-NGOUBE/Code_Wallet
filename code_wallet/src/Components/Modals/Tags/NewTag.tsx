@@ -6,7 +6,7 @@ export default function NewTag({tagValue, setTagValue, modalsVisibility, setModa
     return (
         <div className="modal-new" style={modalsVisibility.new ? {display: "flex"} : {display: "none"}}>
             <h2>New tag</h2>
-            <p className="close">X</p>
+            <p className="close" onClick={() => setModalsVisibility(mV => ({edit: mV.edit, new: false}))}>X</p>
             <div className="form">
                 <label htmlFor="tag-name">TagName</label>
                 <input 

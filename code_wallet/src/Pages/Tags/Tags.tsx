@@ -15,9 +15,9 @@ export default function Tags(){
 
    const tagsSample = ["Tagadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadadadaadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]
    const tagsPerFragmentSample = [
-       {title: "Title", tags: ["Tagadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadadadaadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-       {title: "Title", tags: ["Tag", "Tag", "Tag"]},
-       {title: "Title", tags: ["Tag", "Tag", "Tag"]}
+       {id: "1", title: "Title", tags: ["Tagadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadadadaadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
+       {id: "2", title: "Title", tags: ["Tag", "Tag", "Tag"]},
+       {id: "3", title: "Title", tags: ["Tag", "Tag", "Tag"]}
     ]
     
     const [tagValue, setTagValue] = useState<string>("")
