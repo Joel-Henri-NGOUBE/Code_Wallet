@@ -45,7 +45,7 @@ export default function Fragment({index, fragment, click, setModalValues, setVie
     }
 
     return(
-        click[1] ? (<Link to="newfragments"><div className="fragment" key={index}>
+        click[1] ? (<Link to={`newfragments/${fragment.id}`}><div className="fragment" key={index}>
                 <div className="top-background">
                     <div className="top">
                         <div className="icons">
@@ -61,7 +61,7 @@ export default function Fragment({index, fragment, click, setModalValues, setVie
                     </div>
                 </div>
             </div></Link>) :
-        (<Link to="newfragments"><div className="fragment2" key={index}>
+        (<Link to={`newfragments/${fragment.id}`}><div className="fragment2" key={index}>
                 <div className="left">
                         <span className="fragment-title">{fragment.title}</span>
                 </div>
@@ -70,8 +70,8 @@ export default function Fragment({index, fragment, click, setModalValues, setVie
                         {fragment.tags.map((tag, index) => <span key={index} className="tag">{tag}</span>)}
                     </div>
                     <div className="icons">
-                        <img src={Eye} alt="eye" width={30}/>
-                        <img src={Remove} alt="remove" width={20}/>
+                        <img src={Eye} alt="eye" width={30} onClick={(e) => handleClickEye(e, fragment)}/>
+                        <img src={Remove} alt="remove" width={20} onClick={(e: MouseEvent) => handleClickRemove(e, fragment)}/>
                     </div>
                 </div>
                 
