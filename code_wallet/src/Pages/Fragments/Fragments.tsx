@@ -6,7 +6,8 @@ import FragmentsComponent from "../../Components/Fragments/fragments"
 // import Squares from "../../assets/squares.svg"
 import Modal from "../../Components/Modals/Fragments/modal"
 import Actions from "../../Components/Actions/actions"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+// import { ipcRenderer } from "electron"
 // import CodeImage from "../../assets/remove.svg"
 
 export default function Fragments(){
@@ -23,10 +24,16 @@ export default function Fragments(){
     })
     
     
-    function handleClickRows(click: boolean[]){
+    async function handleClickRows(click: boolean[]){
         if(!click[0]){
             setClick([!click[0], !click[1]])
         }
+        // console.log(await window.ipcRenderer.goodMorning("ipcRenderer", (goodMorning) => goodMorning()))
+        const a = await window.ipcRenderer.invoke("bonjour", "bonjour")
+        // const b = await window.electronAPI
+        // const b = window.ipcRenderer.invoke
+
+        console.log(a)
     }
     function handleClickSquares(click: boolean[]){
         if(!click[1]){
@@ -50,22 +57,15 @@ export default function Fragments(){
                         pppppppppppppppppppppppppppppppp
                         pppppppppppp`
 
-    const fragmentsSample = [
-        {id: "1",title: "The actual title", code: codeSample, tags: ["Tagadadadadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadaxdaadadadadadadadadadaddaadad", "Redux", "StateComponents", "ReactRedux", "ReduxToolkits", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "2",title: "The actual title", code: "codeSample", tags: ["Tag", "Tag", "Tag"]},
-        {id: "3",title: "The actual title", code: "codeSample1", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "4",title: "The actual title", code: "codeSample2", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "5",title: "The actual title", code: "codeSample3", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "6",title: "The actual title", code: "codeSample4", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "7",title: "The actual title", code: "codeSample5", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "8",title: "The actual title", code: "codeSample6", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "9",title: "The actual title", code: "codeSample7", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "10",title: "The actual title", code: "codeSample8", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "11",title: "The actual title", code: "codeSample9", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "12",title: "The actual title", code: "codeSample10", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]}
-    ]
+    const [fragments, setFragments] = useState<IFragment[]>([])
 
-    const [fragments, setFragments] = useState<IFragment[]>(fragmentsSample)
+    useEffect(() => {
+        async function getFragments() {
+            const a = await window.ipcRenderer.invoke("getFragments")
+            setFragments(a)
+        }
+        getFragments()
+    }, [])
 
     return (
     <>

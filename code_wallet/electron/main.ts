@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
@@ -32,6 +32,7 @@ function createWindow() {
     icon: path.join(process.env.VITE_PUBLIC, 'vite.svg'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),
+      // main: 
     },
   })
 
@@ -72,4 +73,42 @@ app.on('activate', () => {
   }
 })
 
-app.whenReady().then(createWindow)
+app.whenReady().then(() => {
+  createWindow()
+
+  ipcMain.handle("bonjour", (e, th) => "Bonsoir " + th)
+
+  const codeSample = `pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+                        ppppppppppppppppp
+                        ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+                        pppppppppppppppppppppppp
+                        pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+                        pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+                        pppppppppppppppp
+                        ppppppppppppppppppppppppppp
+                        ppppppp
+                        pppppppppp
+                        pppp
+                        pppppppppppp
+                        pppppppppppppppppppppppp
+                        pppppppppppppppppppppppppppppppp
+                        pppppppppppp`
+
+  const fragmentsSample = [
+        {id: "1",title: "The actual title", code: codeSample, tags: ["Tagadadadadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadaxdaadadadadadadadadadaddaadad", "Redux", "StateComponents", "ReactRedux", "ReduxToolkits", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
+        {id: "2",title: "The actual title", code: "codeSample", tags: ["Tag", "Tag", "Tag"]},
+        {id: "3",title: "The actual title", code: "codeSample1", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
+        {id: "4",title: "The actual title", code: "codeSample2", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
+        {id: "5",title: "The actual title", code: "codeSample3", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
+        {id: "6",title: "The actual title", code: "codeSample4", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
+        {id: "7",title: "The actual title", code: "codeSample5", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
+        {id: "8",title: "The actual title", code: "codeSample6", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
+        {id: "9",title: "The actual title", code: "codeSample7", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
+        {id: "10",title: "The actual title", code: "codeSample8", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
+        {id: "11",title: "The actual title", code: "codeSample9", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
+        {id: "12",title: "The actual title", code: "codeSample10", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]}
+    ]
+
+  ipcMain.handle("getFragments", () => fragmentsSample)
+
+})

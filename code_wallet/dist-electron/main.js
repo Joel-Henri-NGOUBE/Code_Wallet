@@ -47507,6 +47507,7 @@ function createWindow() {
     icon: path.join(process.env.VITE_PUBLIC, "vite.svg"),
     webPreferences: {
       preload: path.join(__dirname$1, "preload.mjs")
+      // main: 
     }
   });
   win.webContents.on("did-finish-load", () => {
@@ -47534,7 +47535,40 @@ electron.app.on("activate", () => {
     createWindow();
   }
 });
-electron.app.whenReady().then(createWindow);
+electron.app.whenReady().then(() => {
+  createWindow();
+  electron.ipcMain.handle("bonjour", (e, th) => "Bonsoir " + th);
+  const codeSample = `pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+                        ppppppppppppppppp
+                        ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+                        pppppppppppppppppppppppp
+                        pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+                        pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+                        pppppppppppppppp
+                        ppppppppppppppppppppppppppp
+                        ppppppp
+                        pppppppppp
+                        pppp
+                        pppppppppppp
+                        pppppppppppppppppppppppp
+                        pppppppppppppppppppppppppppppppp
+                        pppppppppppp`;
+  const fragmentsSample = [
+    { id: "1", title: "The actual title", code: codeSample, tags: ["Tagadadadadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadaxdaadadadadadadadadadaddaadad", "Redux", "StateComponents", "ReactRedux", "ReduxToolkits", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"] },
+    { id: "2", title: "The actual title", code: "codeSample", tags: ["Tag", "Tag", "Tag"] },
+    { id: "3", title: "The actual title", code: "codeSample1", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"] },
+    { id: "4", title: "The actual title", code: "codeSample2", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"] },
+    { id: "5", title: "The actual title", code: "codeSample3", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"] },
+    { id: "6", title: "The actual title", code: "codeSample4", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"] },
+    { id: "7", title: "The actual title", code: "codeSample5", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"] },
+    { id: "8", title: "The actual title", code: "codeSample6", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"] },
+    { id: "9", title: "The actual title", code: "codeSample7", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"] },
+    { id: "10", title: "The actual title", code: "codeSample8", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"] },
+    { id: "11", title: "The actual title", code: "codeSample9", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"] },
+    { id: "12", title: "The actual title", code: "codeSample10", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"] }
+  ];
+  electron.ipcMain.handle("getFragments", () => fragmentsSample);
+});
 exports.MAIN_DIST = MAIN_DIST;
 exports.RENDERER_DIST = RENDERER_DIST;
 exports.VITE_DEV_SERVER_URL = VITE_DEV_SERVER_URL;
