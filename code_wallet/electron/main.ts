@@ -94,20 +94,21 @@ app.whenReady().then(() => {
                         pppppppppppppppppppppppppppppppp
                         pppppppppppp`
 
-  const fragmentsSample = [
-        {id: "1",title: "The actual title", code: codeSample, tags: ["Tagadadadadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadaxdaadadadadadadadadadaddaadad", "Redux", "StateComponents", "ReactRedux", "ReduxToolkits", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "2",title: "The actual title", code: "codeSample", tags: ["Tag", "Tag", "Tag"]},
-        {id: "3",title: "The actual title", code: "codeSample1", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "4",title: "The actual title", code: "codeSample2", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "5",title: "The actual title", code: "codeSample3", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "6",title: "The actual title", code: "codeSample4", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "7",title: "The actual title", code: "codeSample5", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "8",title: "The actual title", code: "codeSample6", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "9",title: "The actual title", code: "codeSample7", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "10",title: "The actual title", code: "codeSample8", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "11",title: "The actual title", code: "codeSample9", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-        {id: "12",title: "The actual title", code: "codeSample10", tags: ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]}
-    ]
+    const fragmentsSample: IFragment[] = [
+      // {id: "1",title: "The actual title", code: "codeSample", tags: []}, 
+      {id: "1",title: "The actual title", code: codeSample, tags: [{id: 15, name: "Tagadadadadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadaxdaadadadadadadadadadaddaadad"}, {id: 16, name: "Redux"}, {id: 17, name: "StateComponents"}, {id: 18, name: "ReactRedux"}, {id: 19, name: "ReduxToolkits"}, {id: 4, name: "Tag4"}, {id: 8, name: "Tag8"}]}, 
+      {id: "2",title: "The actual title", code: "codeSample", tags: [{id: 4, name: "Tag4"}, {id: 9, name: "Tag9"}, {id: 10, name: "Tag10"}]},
+      {id: "3",title: "The actual title", code: "codeSample1", tags: [{id: 2, name: "Tag2"}, {id: 5, name: "Tag5"}, {id: 8, name: "Tag8"}, {id: 9, name: "Tag9"}]},
+      {id: "4",title: "The actual title", code: "codeSample2", tags: [{id: 3, name: "Tag3"}, {id: 7, name: "Tag7"}, {id: 9, name: "Tag9"}, {id: 1, name: "Tag1"}]},
+      {id: "5",title: "The actual title", code: "codeSample3", tags: [{id: 4, name: "Tag4"}, {id: 7, name: "Tag7"}, {id: 5, name: "Tag5"}, {id: 7, name: "Tag7"}]},
+      {id: "6",title: "The actual title", code: "codeSample4", tags: [{id: 1, name: "Tag1"}, {id: 12, name: "Tag12"}, {id: 11, name: "Tag11"}]},
+      {id: "7",title: "The actual title", code: "codeSample5", tags: [{id: 5, name: "Tag5"}, {id: 3, name: "Tag3"}, {id: 2, name: "Tag2"}, {id: 12, name: "Tag12"}]},
+      {id: "8",title: "The actual title", code: "codeSample6", tags: [{id: 11, name: "Tag11"}, {id: 2, name: "Tag2"}, {id: 8, name: "Tag8"}, {id: 9, name: "Tag9"}]},
+      {id: "9",title: "The actual title", code: "codeSample7", tags: [{id: 1, name: "Tag1"}, {id: 2, name: "Tag2"}, {id: 3, name: "Tag3"}, {id: 4, name: "Tag4"}]},
+      {id: "10",title: "The actual title", code: "codeSample8", tags: [{id: 7, name: "Tag7"}, {id: 6, name: "Tag6"}, {id: 5, name: "Tag5"}, {id: 10, name: "Tag10"}]},
+      {id: "11",title: "The actual title", code: "codeSample9", tags: [{id: 10, name: "Tag10"}, {id: 7, name: "Tag7"}, {id: 9, name: "Tag9"}, {id: 11, name: "Tag11"}]},
+      {id: "12",title: "The actual title", code: "codeSample10", tags: [{id: 2, name: "Tag2"}, {id: 7, name: "Tag7"}, {id: 9, name: "Tag9"}, {id: 12, name: "Tag12"}]}
+  ]
 
   ipcMain.handle("getFragments", () => fragmentsSample)
 

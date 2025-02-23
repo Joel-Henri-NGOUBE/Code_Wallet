@@ -16,7 +16,7 @@ export default function TagsPerFragment({tagValue, setTagValue, tagsPerFragment,
                 <div className="fragment">
                     <h2 className="fragment-title">{fragment.title}</h2>
                     <div className="tags-wrapper2">
-                    {fragment.tags.map((tag, index) => <span key={index} className="tag" onClick={() => {handleTagClick(fragment.tags[index])}}>{tag}</span>)}
+                    {fragment.tags.map((tag, index) => <span key={index} className="tag" onClick={() => {handleTagClick(fragment.tags[index].name)}}>{tag.name}</span>)}
                     </div>
                 </div>
             ))}

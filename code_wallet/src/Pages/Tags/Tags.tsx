@@ -13,20 +13,22 @@ import { ModalsVisibility } from "../../types/modalsVisibility";
 
 export default function Tags(){
 
-   const tagsSample = ["Tagadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadadadaadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]
+   const tagsSample = [{id: 1, name: "Tagadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadadadaadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}]
    const tagsPerFragmentSample = [
-       {id: "1", title: "Title", tags: ["Tagadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadadadaadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-       {id: "2", title: "Title", tags: ["Tag", "Tag", "Tag"]},
-       {id: "3", title: "Title", tags: ["Tag", "Tag", "Tag"]}
+       {id: "1", title: "Title", tags: [{id: 1, name: "Tagadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadadadaadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}]},
+       {id: "2", title: "Title", tags: [{id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}]},
+       {id: "3", title: "Title", tags: [{id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}]}
     ]
     
     const [tagValue, setTagValue] = useState<string>("")
 
     // const [currentTagIndex, setCurrentTagIndex] = useState< number | null >(null)
     
-    const [tags, setTags] = useState<string[]>(tagsSample)
+    // Tous les tags ou allTags
+    const [tags, setTags] = useState<{id: number, name: string}[]>(tagsSample)
     
-    const [tagsPerFragment, setTagsPerFragment] = useState<IFragment[]>(tagsPerFragmentSample)
+    // Variable Fragments
+    const [tagsPerFragment, setTagsPerFragment] = useState<IFragment[]>([tagsPerFragmentSample])
 
     const [modalsVisibility, setModalsVisibility] = useState<ModalsVisibility>({edit: false, new: false})
 

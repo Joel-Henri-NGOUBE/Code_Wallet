@@ -11,10 +11,10 @@ interface FragmentProp{
     setViewClick: Dispatch<SetStateAction<boolean>>,
     code: string,
     setCode: Dispatch<SetStateAction<string>>
-    setModalValues: Dispatch<SetStateAction<IFragment>>
+    // setModalValues: Dispatch<SetStateAction<IFragment>>
 }
 
-export default function Fragment({index, fragment, click, setModalValues, setViewClick, code, setCode, setFragments}: FragmentProp){
+export default function Fragment({index, fragment, click, setViewClick, code, setCode, setFragments}: FragmentProp){
     
     useEffect(() => {
         if(!click[1]){
@@ -36,7 +36,7 @@ export default function Fragment({index, fragment, click, setModalValues, setVie
         e.preventDefault()
         if(fragment.code) setCode(fragment.code)
         setViewClick(true)
-        setModalValues(fragment)
+        // setModalValues(fragment)
     }
 
     function handleClickRemove(e: MouseEvent, fragment: IFragment){
@@ -57,7 +57,7 @@ export default function Fragment({index, fragment, click, setModalValues, setVie
                 </div>
                 <div className="bottom">
                     <div className="tags">
-                    {fragment.tags.map((tag, index) => <span key={index} className="tag">{tag}</span>)}
+                    {fragment.tags.map((tag) => <span key={tag.id} className="tag">{tag.name}</span>)}
                     </div>
                 </div>
             </div></Link>) :
@@ -67,7 +67,7 @@ export default function Fragment({index, fragment, click, setModalValues, setVie
                 </div>
                 <div className="right">
                     <div className="tags">
-                        {fragment.tags.map((tag, index) => <span key={index} className="tag">{tag}</span>)}
+                        {fragment.tags.map((tag) => <span key={tag.id} className="tag">{tag.name}</span>)}
                     </div>
                     <div className="icons">
                         <img src={Eye} alt="eye" width={30} onClick={(e) => handleClickEye(e, fragment)}/>

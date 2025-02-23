@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { FragmentModal } from "../../../interfaces/fragmentModal";
 
-export default function Modal({codeSample, viewClick, setViewClick, code, setCode}: FragmentModal){
+export default function Modal({ viewClick, setViewClick, code, setCode}: FragmentModal){
     return(
         <div className="modal-container" style={viewClick ? {display: "flex"} : {display: "none"}}>
                 <div className="modal-code">

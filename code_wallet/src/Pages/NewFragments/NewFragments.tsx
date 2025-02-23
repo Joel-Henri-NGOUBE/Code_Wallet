@@ -4,7 +4,7 @@ import "./newfragments.css"
 import Title from "../../Components/Titles/NewFragments"
 // import FragmentTitle from "../../Components/Form/NewFragments/fragmentTitle"
 import Code from "../../Components/Form/NewFragments/code"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 // import TagsLabel from "../../Components/Form/NewFragments/tags"
 import Buttons from "../../Components/Form/NewFragments/buttons"
 import Form from "../../Components/Form/form"
@@ -13,26 +13,34 @@ import { useParams } from "react-router-dom"
 export default function NewFragments(){
     const {id} = useParams()
     
-    const fragmentsSample = [
-        // {id: "1",title: "The actual title", code: "codeSample", tags: []}, 
-        {id: "1",title: "The actual title", code: "codeSample", tags: [{id: 15, name: "Tagadadadadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadaxdaadadadadadadadadadaddaadad"}, {id: 16, name: "Redux"}, {id: 17, name: "StateComponents"}, {id: 18, name: "ReactRedux"}, {id: 19, name: "ReduxToolkits"}, {id: 4, name: "Tag4"}, {id: 8, name: "Tag8"}]}, 
-        {id: "2",title: "The actual title", code: "codeSample", tags: [{id: 4, name: "Tag4"}, {id: 9, name: "Tag9"}, {id: 10, name: "Tag10"}]},
-        {id: "3",title: "The actual title", code: "codeSample1", tags: [{id: 2, name: "Tag2"}, {id: 5, name: "Tag5"}, {id: 8, name: "Tag8"}, {id: 9, name: "Tag9"}]},
-        {id: "4",title: "The actual title", code: "codeSample2", tags: [{id: 3, name: "Tag3"}, {id: 7, name: "Tag7"}, {id: 9, name: "Tag9"}, {id: 1, name: "Tag1"}]},
-        {id: "5",title: "The actual title", code: "codeSample3", tags: [{id: 4, name: "Tag4"}, {id: 7, name: "Tag7"}, {id: 5, name: "Tag5"}, {id: 7, name: "Tag7"}]},
-        {id: "6",title: "The actual title", code: "codeSample4", tags: [{id: 1, name: "Tag1"}, {id: 12, name: "Tag12"}, {id: 11, name: "Tag11"}]},
-        {id: "7",title: "The actual title", code: "codeSample5", tags: [{id: 5, name: "Tag5"}, {id: 3, name: "Tag3"}, {id: 2, name: "Tag2"}, {id: 12, name: "Tag12"}]},
-        {id: "8",title: "The actual title", code: "codeSample6", tags: [{id: 11, name: "Tag11"}, {id: 2, name: "Tag2"}, {id: 8, name: "Tag8"}, {id: 9, name: "Tag9"}]},
-        {id: "9",title: "The actual title", code: "codeSample7", tags: [{id: 1, name: "Tag1"}, {id: 2, name: "Tag2"}, {id: 3, name: "Tag3"}, {id: 4, name: "Tag4"}]},
-        {id: "10",title: "The actual title", code: "codeSample8", tags: [{id: 7, name: "Tag7"}, {id: 6, name: "Tag6"}, {id: 5, name: "Tag5"}, {id: 10, name: "Tag10"}]},
-        {id: "11",title: "The actual title", code: "codeSample9", tags: [{id: 10, name: "Tag10"}, {id: 7, name: "Tag7"}, {id: 9, name: "Tag9"}, {id: 11, name: "Tag11"}]},
-        {id: "12",title: "The actual title", code: "codeSample10", tags: [{id: 2, name: "Tag2"}, {id: 7, name: "Tag7"}, {id: 9, name: "Tag9"}, {id: 12, name: "Tag12"}]}
-    ]
+    // const fragmentsSample = [
+    //     // {id: "1",title: "The actual title", code: "codeSample", tags: []}, 
+    //     {id: "1",title: "The actual title", code: "codeSample", tags: [{id: 15, name: "Tagadadadadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadaxdaadadadadadadadadadaddaadad"}, {id: 16, name: "Redux"}, {id: 17, name: "StateComponents"}, {id: 18, name: "ReactRedux"}, {id: 19, name: "ReduxToolkits"}, {id: 4, name: "Tag4"}, {id: 8, name: "Tag8"}]}, 
+    //     {id: "2",title: "The actual title", code: "codeSample", tags: [{id: 4, name: "Tag4"}, {id: 9, name: "Tag9"}, {id: 10, name: "Tag10"}]},
+    //     {id: "3",title: "The actual title", code: "codeSample1", tags: [{id: 2, name: "Tag2"}, {id: 5, name: "Tag5"}, {id: 8, name: "Tag8"}, {id: 9, name: "Tag9"}]},
+    //     {id: "4",title: "The actual title", code: "codeSample2", tags: [{id: 3, name: "Tag3"}, {id: 7, name: "Tag7"}, {id: 9, name: "Tag9"}, {id: 1, name: "Tag1"}]},
+    //     {id: "5",title: "The actual title", code: "codeSample3", tags: [{id: 4, name: "Tag4"}, {id: 7, name: "Tag7"}, {id: 5, name: "Tag5"}, {id: 7, name: "Tag7"}]},
+    //     {id: "6",title: "The actual title", code: "codeSample4", tags: [{id: 1, name: "Tag1"}, {id: 12, name: "Tag12"}, {id: 11, name: "Tag11"}]},
+    //     {id: "7",title: "The actual title", code: "codeSample5", tags: [{id: 5, name: "Tag5"}, {id: 3, name: "Tag3"}, {id: 2, name: "Tag2"}, {id: 12, name: "Tag12"}]},
+    //     {id: "8",title: "The actual title", code: "codeSample6", tags: [{id: 11, name: "Tag11"}, {id: 2, name: "Tag2"}, {id: 8, name: "Tag8"}, {id: 9, name: "Tag9"}]},
+    //     {id: "9",title: "The actual title", code: "codeSample7", tags: [{id: 1, name: "Tag1"}, {id: 2, name: "Tag2"}, {id: 3, name: "Tag3"}, {id: 4, name: "Tag4"}]},
+    //     {id: "10",title: "The actual title", code: "codeSample8", tags: [{id: 7, name: "Tag7"}, {id: 6, name: "Tag6"}, {id: 5, name: "Tag5"}, {id: 10, name: "Tag10"}]},
+    //     {id: "11",title: "The actual title", code: "codeSample9", tags: [{id: 10, name: "Tag10"}, {id: 7, name: "Tag7"}, {id: 9, name: "Tag9"}, {id: 11, name: "Tag11"}]},
+    //     {id: "12",title: "The actual title", code: "codeSample10", tags: [{id: 2, name: "Tag2"}, {id: 7, name: "Tag7"}, {id: 9, name: "Tag9"}, {id: 12, name: "Tag12"}]}
+    // ]
 
     // const [fragment, setFragment] = useState(fragmentsSample[parseInt(id)])
     
     // id && console.log(fragmentsSample[parseInt(id)].tags)
-    const [fragments, setFragments] = useState(fragmentsSample)
+
+    // const [fragments, setFragments] = useState<IFragment[]>([{
+    //     id: "",
+    //     title: "",
+    //     code: "",
+    //     tags: [{id: 0, name: ""}]
+    // }])
+
+    const [fragments, setFragments] = useState<IFragment[]>([])
 
     const [areOtherTagsVisible, setAreOtherTagsVisible] = useState<boolean>(false)
 
@@ -46,13 +54,23 @@ export default function NewFragments(){
 
     const [title, setTitle] = useState<string>("Title")
     const [code, setCode] = useState<string>("")
+
+    useEffect(() => {
+        async function getFragments() {
+            const a = await window.ipcRenderer.invoke("getFragments")
+            console.log(a)
+            setFragments(a)
+        }
+        getFragments()
+    }, [])
+
     return (
     <div className="newfragments">
         <Header />
 
         <Title />
-        {/* {id ? id : "ningùn id"} */}
-        <Form 
+        {/* {id ? `${fragments.filter((f) => f.id === id)[0].code}` : "ningùn id"} */}
+        { fragments.length && <Form 
             title={id ? fragments.filter((f) => f.id === id)[0].title : "Title"}
             setTitle={setTitle}
             tags={id ? fragments.filter((f) => f.id === id)[0].tags : tags}
@@ -63,7 +81,7 @@ export default function NewFragments(){
             setAreOtherTagsVisible={setAreOtherTagsVisible}
             code={id ? fragments.filter((f) => f.id === id)[0].code : code}
             setCode={setCode}
-        />
+        />}
         <Buttons />
     </div>
     )

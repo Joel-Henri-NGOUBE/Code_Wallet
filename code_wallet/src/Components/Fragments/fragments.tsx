@@ -6,20 +6,20 @@ interface FragmentsProp{
     fragments: IFragment[],
     setFragments: Dispatch<SetStateAction<IFragment[]>>,
     click: boolean[],
-    setModalValues: Dispatch<SetStateAction<IFragment>>,
+    // setModalValues: Dispatch<SetStateAction<IFragment>>,
     setViewClick: Dispatch<SetStateAction<boolean>>,
     code: string,
     setCode: Dispatch<SetStateAction<string>>
 }
 
-export default function FragmentsComponent({fragments, setFragments, click, setModalValues, setViewClick, code, setCode}: FragmentsProp){
+export default function FragmentsComponent({fragments, setFragments, click, setViewClick, code, setCode}: FragmentsProp){
     return(
         click[1] ?
         (<div className="fragments">
-            {fragments.map((fragment, index) => <Fragment index={index} fragment={fragment} setFragments={setFragments} click={click} setModalValues={setModalValues} setViewClick={setViewClick} code={code} setCode={setCode}/>)}
+            {fragments.map((fragment, index) => <Fragment index={index} fragment={fragment} setFragments={setFragments} click={click} setViewClick={setViewClick} code={code} setCode={setCode}/>)}
         </div>) :
         (<div className="fragments2">
-            {fragments.map((fragment, index) => <Fragment index={index} fragment={fragment} setFragments={setFragments} click={click} setModalValues={setModalValues} setViewClick={setViewClick} code={code} setCode={setCode}/>)}
+            {fragments.map((fragment, index) => <Fragment index={index} fragment={fragment} setFragments={setFragments} click={click} setViewClick={setViewClick} code={code} setCode={setCode}/>)}
         </div>)
     )
 }

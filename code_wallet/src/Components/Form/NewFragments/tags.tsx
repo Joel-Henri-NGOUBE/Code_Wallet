@@ -1,23 +1,7 @@
 import Remove from "../../../assets/remove.svg"
 import Plus from "../../../assets/plus.svg"
 import { Dispatch, SetStateAction } from "react"
-export default function TagsLabel({tags, otherTags, fragments, setFragments, areOtherTagsVisible, setAreOtherTagsVisible}: {tags: {id: number, name: string}[], otherTags: {id: number, name: string}[], areOtherTagsVisible: boolean, setAreOtherTagsVisible: Dispatch<SetStateAction<boolean>>, fragments: {
-    id: string;
-    title: string;
-    code: string;
-    tags: {
-        id: number;
-        name: string;
-    }[];
-}[], setFragments: Dispatch<SetStateAction<{
-    id: string;
-    title: string;
-    code: string;
-    tags: {
-        id: number;
-        name: string;
-    }[];
-}[]>>}){
+export default function TagsLabel({tags, otherTags, fragments, setFragments, areOtherTagsVisible, setAreOtherTagsVisible}: {tags: {id: number, name: string}[], otherTags: {id: number, name: string}[], areOtherTagsVisible: boolean, setAreOtherTagsVisible: Dispatch<SetStateAction<boolean>>, fragments: IFragment[], setFragments: Dispatch<SetStateAction<IFragment[]>>}){
 
     function handleClickRemove(id: number, fragments: any){
         setFragments((fs) => fs.map((f) => f.id === "1" ? ({...f, tags: tags.filter((t) => t.id !== id)}) : f))

@@ -13,7 +13,7 @@ export default function AllTags({tags, setTags, tagValue, setTagValue, modalsVis
     return (
         <div className="tags">
             <div className="tags-wrapper">
-            {tags.map((tag, index) => <span key={index} className="tag" onClick={() => {handleTagClick(tags[index])}}>{tag}</span>)}
+            {tags.map((tag, index) => <span key={index} className="tag" onClick={() => {handleTagClick(tags[index].name)}}>{tag.name}</span>)}
             </div>
         </div>
     )

@@ -16,12 +16,12 @@ export default function Fragments(){
     const [viewClick, setViewClick] = useState<boolean>(false)
     const [code, setCode] = useState<string>("")
 
-    const [modalValues, setModalValues] = useState<IFragment>({
-        id: "",
-        title: "",
-        code: "",
-        tags: []
-    })
+    // const [modalValues, setModalValues] = useState<IFragment>({
+    //     id: "",
+    //     title: "",
+    //     code: "",
+    //     tags: []
+    // })
     
     
     async function handleClickRows(click: boolean[]){
@@ -41,27 +41,28 @@ export default function Fragments(){
         }
     }
 
-    const codeSample = `pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
-                        ppppppppppppppppp
-                        ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
-                        pppppppppppppppppppppppp
-                        pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
-                        pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
-                        pppppppppppppppp
-                        ppppppppppppppppppppppppppp
-                        ppppppp
-                        pppppppppp
-                        pppp
-                        pppppppppppp
-                        pppppppppppppppppppppppp
-                        pppppppppppppppppppppppppppppppp
-                        pppppppppppp`
+    // const codeSample = `pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+    //                     ppppppppppppppppp
+    //                     ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+    //                     pppppppppppppppppppppppp
+    //                     pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+    //                     pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+    //                     pppppppppppppppp
+    //                     ppppppppppppppppppppppppppp
+    //                     ppppppp
+    //                     pppppppppp
+    //                     pppp
+    //                     pppppppppppp
+    //                     pppppppppppppppppppppppp
+    //                     pppppppppppppppppppppppppppppppp
+    //                     pppppppppppp`
 
     const [fragments, setFragments] = useState<IFragment[]>([])
 
     useEffect(() => {
         async function getFragments() {
             const a = await window.ipcRenderer.invoke("getFragments")
+            console.log(a)
             setFragments(a)
         }
         getFragments()
@@ -80,14 +81,14 @@ export default function Fragments(){
                 click={click}
                 code={code}
                 setCode={setCode}
-                setModalValues={setModalValues}
+                // setModalValues={setModalValues}
                 setViewClick={setViewClick}
             />
       
             <Modal 
                 code={code}
                 setCode={setCode}
-                codeSample={codeSample}
+                // codeSample={codeSample}
                 viewClick={viewClick}
                 setViewClick={setViewClick}
             />

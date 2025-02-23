@@ -4,8 +4,8 @@ import { tagsPerFragment } from "./tagsPerFragmentList";
 import { ModalsVisibility } from "../types/modalsVisibility";
 
 export interface Tags extends tagsList, tagsPerFragment{
-    tags: string[],
-    setTags: Dispatch<SetStateAction<string[]>>,
+    tags: {id: number, name: string}[],
+    setTags: Dispatch<SetStateAction<{id: number, name: string}[]>>,
     tagValue: string,
     setTagValue: Dispatch<SetStateAction<string>>,
     // currentTagIndex: number | null,
