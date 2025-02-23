@@ -10,8 +10,8 @@ export interface Tags extends tagsList, tagsPerFragment{
     setTagValue: Dispatch<SetStateAction<string>>,
     // currentTagIndex: number | null,
     // setCurrentTagIndex: Dispatch<SetStateAction<number | null>>
-    tagsPerFragment: IFragment[],
-    setTagsPerFragment: Dispatch<SetStateAction<IFragment[]>>,
+    fragments: IFragment[],
+    setFragments: Dispatch<SetStateAction<IFragment[]>>,
     modalsVisibility: ModalsVisibility,
     setModalsVisibility: Dispatch<SetStateAction<ModalsVisibility>>
 }

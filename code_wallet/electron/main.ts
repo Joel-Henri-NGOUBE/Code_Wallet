@@ -110,6 +110,10 @@ app.whenReady().then(() => {
       {id: "12",title: "The actual title", code: "codeSample10", tags: [{id: 2, name: "Tag2"}, {id: 7, name: "Tag7"}, {id: 9, name: "Tag9"}, {id: 12, name: "Tag12"}]}
   ]
 
+  const tagsSample = [{ id: 1, name: "Tag1" }, { id: 2, name: "Tag2" }, { id: 3, name: "Tag3" }, { id: 4, name: "Tag4" }, { id: 5, name: "Tag5" }, { id: 6, name: "Tag6" }, { id: 7, name: "Tag7" }, { id: 8, name: "Tag8" }, { id: 9, name: "Tag9" }, { id: 10, name: "Tag10" }, { id: 11, name: "Tag11" }, { id: 12, name: "Tag12" }, { id: 13, name: "Tag13" }, { id: 14, name: "Tag14" }, { id: 15, name: "Tagadadadadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadaxdaadadadadadadadadadaddaadad" }, { id: 16, name: "Redux" }, { id: 17, name: "StateComponents" }, { id: 18, name: "ReactRedux" }, { id: 19, name: "ReduxToolkits" },]
+
   ipcMain.handle("getFragments", () => fragmentsSample)
+
+  ipcMain.handle("getTags", () => tagsSample)
 
 })

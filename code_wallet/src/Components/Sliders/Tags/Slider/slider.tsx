@@ -2,7 +2,7 @@ import { Tags } from "../../../../interfaces/tags";
 import AllTags from "../Parts/allTags";
 import TagsPerFragment from "../Parts/tagPerFragments";
 
-export default function Slider({tags, tagsPerFragment, tagValue, setTagValue, setTags, setTagsPerFragment, modalsVisibility, setModalsVisibility}: Tags){
+export default function Slider({tags, fragments, tagValue, setTagValue, setTags, setFragments, modalsVisibility, setModalsVisibility}: Tags){
     return(
         <div className="slider">
             <div className="slider-wrapper">
@@ -21,8 +21,8 @@ export default function Slider({tags, tagsPerFragment, tagValue, setTagValue, se
                 <TagsPerFragment
                     tagValue={tagValue}
                     setTagValue={setTagValue}
-                    tagsPerFragment={tagsPerFragment}
-                    setTagsPerFragment={setTagsPerFragment}
+                    fragments={fragments}
+                    setFragments={setFragments}
                     modalsVisibility={modalsVisibility}
                     setModalsVisibility={setModalsVisibility}
                 />
