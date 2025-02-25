@@ -3,12 +3,14 @@ import "./newfragments.css"
 
 import Title from "../../Components/Titles/NewFragments"
 // import FragmentTitle from "../../Components/Form/NewFragments/fragmentTitle"
-import Code from "../../Components/Form/NewFragments/code"
+// import Code from "../../Components/Form/NewFragments/code"
 import { useEffect, useState } from "react"
 // import TagsLabel from "../../Components/Form/NewFragments/tags"
 import Buttons from "../../Components/Form/NewFragments/buttons"
 import Form from "../../Components/Form/form"
 import { useParams } from "react-router-dom"
+import { IFragment } from "../../interfaces/fragment"
+import { ITag } from "../../interfaces/tag"
 
 export default function NewFragments(){
     const {id} = useParams()
@@ -44,15 +46,15 @@ export default function NewFragments(){
 
     const [areOtherTagsVisible, setAreOtherTagsVisible] = useState<boolean>(false)
 
-    function getCurrentTag(tags: {id: number, name: string}[], tagsToFilter: {id: number, name: string}[]){
-        const ids = tagsToFilter.reduce((acc: number[], val) => {acc.push(val.id); return acc}, [])
+    function getCurrentTag(tags: ITag[], tagsToFilter: ITag[]){
+        const ids = tagsToFilter.reduce((acc: string[], val) => {acc.push(val.id); return acc}, [])
         return tags.filter((tag) => !(ids.includes(tag.id)))
     }
 
 //    const tags2 = ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]
 
     const [title, setTitle] = useState<string>("Title")
-    const [tags, setTags] = useState<{id: number, name: string}[]>([])
+    const [tags, setTags] = useState<ITag[]>([])
     const [code, setCode] = useState<string>("")
 
     useEffect(() => {
@@ -60,6 +62,8 @@ export default function NewFragments(){
             const a = await window.ipcRenderer.invoke("getFragments")
             console.log(a)
             setFragments(a)
+            id && setCode(fragments.filter((f) => f.id === id)[0].code)
+            id && setTitle(fragments.filter((f) => f.id === id)[0].title)
         }
         getFragments()
     }, [])
@@ -80,7 +84,7 @@ export default function NewFragments(){
         <Title />
         {/* {id ? `${fragments.filter((f) => f.id === id)[0].code}` : "ningùn id"} */}
         { fragments.length && <Form 
-            title={id ? fragments.filter((f) => f.id === id)[0].title : "Title"}
+            title={title}
             setTitle={setTitle}
             tags={id ? fragments.filter((f) => f.id === id)[0].tags : tags}
             otherTags={id ? getCurrentTag(tags, fragments.filter((f) => f.id === id)[0].tags) : tags}
@@ -88,7 +92,7 @@ export default function NewFragments(){
             setFragments={setFragments}
             areOtherTagsVisible={areOtherTagsVisible}
             setAreOtherTagsVisible={setAreOtherTagsVisible}
-            code={id ? fragments.filter((f) => f.id === id)[0].code : code}
+            code={code}
             setCode={setCode}
         />}
         <Buttons />

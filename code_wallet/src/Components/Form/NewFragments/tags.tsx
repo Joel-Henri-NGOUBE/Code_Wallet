@@ -1,14 +1,16 @@
 import Remove from "../../../assets/remove.svg"
 import Plus from "../../../assets/plus.svg"
 import { Dispatch, SetStateAction } from "react"
-export default function TagsLabel({tags, otherTags, fragments, setFragments, areOtherTagsVisible, setAreOtherTagsVisible}: {tags: {id: number, name: string}[], otherTags: {id: number, name: string}[], areOtherTagsVisible: boolean, setAreOtherTagsVisible: Dispatch<SetStateAction<boolean>>, fragments: IFragment[], setFragments: Dispatch<SetStateAction<IFragment[]>>}){
+import { ITag } from "../../../interfaces/tag"
+import { IFragment } from "../../../interfaces/fragment"
+export default function TagsLabel({tags, otherTags, fragments, setFragments, areOtherTagsVisible, setAreOtherTagsVisible}: {tags: ITag[], otherTags: ITag[], areOtherTagsVisible: boolean, setAreOtherTagsVisible: Dispatch<SetStateAction<boolean>>, fragments: IFragment[], setFragments: Dispatch<SetStateAction<IFragment[]>>}){
 
-    function handleClickRemove(id: number, fragments: any){
+    function handleClickRemove(id: string, fragments: IFragment[]){
         setFragments((fs) => fs.map((f) => f.id === "1" ? ({...f, tags: tags.filter((t) => t.id !== id)}) : f))
         console.log(fragments)
     }
 
-    function handleClickAdd(id: number, name: string){
+    function handleClickAdd(id: string, name: string){
         setFragments((fs) => fs.map((f) => f.id === "1" ? ({...f, tags: [...tags, {id: id, name: name}]}) : f))
     }
 

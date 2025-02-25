@@ -10,6 +10,7 @@ import Title from "../../Components/Titles/Tags";
 import Slider from "../../Components/Sliders/Tags/Slider/slider";
 import Modal from "../../Components/Modals/Tags/Container/modal";
 import { ModalsVisibility } from "../../types/modalsVisibility";
+import { IFragment } from "../../interfaces/fragment";
 
 export default function Tags(){
 

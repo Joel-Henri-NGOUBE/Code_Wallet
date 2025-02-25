@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 // import { tagEditor } from "../../interfaces/tagEditor";
 import { tagsPerFragment } from "../../../../interfaces/tagsPerFragmentList";
+import { IFragment } from "../../../../interfaces/fragment";
 
 export default function TagsPerFragment({tagValue, setTagValue, fragments, setFragments, modalsVisibility, setModalsVisibility}: tagsPerFragment ): ReactElement{
     

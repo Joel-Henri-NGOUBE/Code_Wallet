@@ -7,6 +7,7 @@ import FragmentsComponent from "../../Components/Fragments/fragments"
 import Modal from "../../Components/Modals/Fragments/modal"
 import Actions from "../../Components/Actions/actions"
 import { useEffect, useState } from "react"
+import { IFragment } from "../../interfaces/fragment"
 // import { ipcRenderer } from "electron"
 // import CodeImage from "../../assets/remove.svg"
 

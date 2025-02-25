@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import { tagsList } from "./tagsList";
 import { tagsPerFragment } from "./tagsPerFragmentList";
 import { ModalsVisibility } from "../types/modalsVisibility";
+import { IFragment } from "./fragment";
 
 export interface Tags extends tagsList, tagsPerFragment{
     tags: {id: number, name: string}[],

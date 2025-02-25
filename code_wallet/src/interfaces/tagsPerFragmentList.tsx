@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { ModalsVisibility } from "../types/modalsVisibility";
+import { IFragment } from "./fragment";
 
 export interface tagsPerFragment {
     fragments: IFragment[],
