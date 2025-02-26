@@ -8,6 +8,7 @@ import Modal from "../../Components/Modals/Fragments/modal"
 import Actions from "../../Components/Actions/actions"
 import { useEffect, useState } from "react"
 import { IFragment } from "../../interfaces/fragment"
+import { ITag } from "../../interfaces/tag"
 // import { ipcRenderer } from "electron"
 // import CodeImage from "../../assets/remove.svg"
 
@@ -60,14 +61,25 @@ export default function Fragments(){
 
     const [fragments, setFragments] = useState<IFragment[]>([])
 
+    const [tags, setTags] = useState<ITag[]>([])
+
     useEffect(() => {
         async function getFragments() {
             const a = await window.ipcRenderer.invoke("getFragments")
-            console.log(a)
+            // console.log(a)
             setFragments(a)
         }
         getFragments()
     }, [])
+
+    useEffect(() => {
+            async function getTags() {
+                const a = await window.ipcRenderer.invoke("getTags")
+                // console.log(a)
+                setTags(a)
+            }
+            getTags()
+        }, [])
 
     return (
     <>
@@ -77,6 +89,7 @@ export default function Fragments(){
             <Actions click={click} handleClickRows={handleClickRows} handleClickSquares={handleClickSquares}/>
 
             <FragmentsComponent
+                tags={tags}
                 fragments={fragments}
                 setFragments={setFragments}
                 click={click}

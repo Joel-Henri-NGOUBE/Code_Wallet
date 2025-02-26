@@ -1,8 +1,11 @@
 // import { Link } from "react-router-dom";
 import { Dispatch, SetStateAction } from "react";
 import Fragment from "./Fragment/fragment";
+import { IFragment } from "../../interfaces/fragment";
+import { ITag } from "../../interfaces/tag";
 
 interface FragmentsProp{
+    tags: ITag[],
     fragments: IFragment[],
     setFragments: Dispatch<SetStateAction<IFragment[]>>,
     click: boolean[],
@@ -12,14 +15,14 @@ interface FragmentsProp{
     setCode: Dispatch<SetStateAction<string>>
 }
 
-export default function FragmentsComponent({fragments, setFragments, click, setViewClick, code, setCode}: FragmentsProp){
+export default function FragmentsComponent({tags, fragments, setFragments, click, setViewClick, code, setCode}: FragmentsProp){
     return(
         click[1] ?
         (<div className="fragments">
-            {fragments.map((fragment, index) => <Fragment index={index} fragment={fragment} setFragments={setFragments} click={click} setViewClick={setViewClick} code={code} setCode={setCode}/>)}
+            {fragments.map((fragment, index) => <Fragment tags={tags} index={index} fragment={fragment} setFragments={setFragments} click={click} setViewClick={setViewClick} code={code} setCode={setCode}/>)}
         </div>) :
         (<div className="fragments2">
-            {fragments.map((fragment, index) => <Fragment index={index} fragment={fragment} setFragments={setFragments} click={click} setViewClick={setViewClick} code={code} setCode={setCode}/>)}
+            {fragments.map((fragment, index) => <Fragment tags={tags} index={index} fragment={fragment} setFragments={setFragments} click={click} setViewClick={setViewClick} code={code} setCode={setCode}/>)}
         </div>)
     )
 }

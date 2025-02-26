@@ -3,12 +3,13 @@ import { tagsList } from "./tagsList";
 import { tagsPerFragment } from "./tagsPerFragmentList";
 import { ModalsVisibility } from "../types/modalsVisibility";
 import { IFragment } from "./fragment";
+import { ITag } from "./tag";
 
 export interface Tags extends tagsList, tagsPerFragment{
-    tags: {id: number, name: string}[],
-    setTags: Dispatch<SetStateAction<{id: number, name: string}[]>>,
-    tagValue: string,
-    setTagValue: Dispatch<SetStateAction<string>>,
+    tags: ITag[],
+    setTags: Dispatch<SetStateAction<ITag[]>>,
+    tagValue: ITag,
+    setTagValue: Dispatch<SetStateAction<ITag>>,
     // currentTagIndex: number | null,
     // setCurrentTagIndex: Dispatch<SetStateAction<number | null>>
     fragments: IFragment[],

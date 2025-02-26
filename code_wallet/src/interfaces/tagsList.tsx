@@ -1,11 +1,12 @@
 import { Dispatch, SetStateAction } from "react";
 import { ModalsVisibility } from "../types/modalsVisibility";
+import { ITag } from "./tag";
 
 export interface tagsList {
-    tags: {id: number, name: string}[],
-    setTags: Dispatch<SetStateAction<{id: number, name: string}[]>>,
-    tagValue: string,
-    setTagValue: Dispatch<SetStateAction<string>>
+    tags: ITag[],
+    setTags: Dispatch<SetStateAction<ITag[]>>,
+    tagValue: ITag,
+    setTagValue: Dispatch<SetStateAction<ITag>>
     modalsVisibility: ModalsVisibility,
     setModalsVisibility: Dispatch<SetStateAction<ModalsVisibility>>
 }

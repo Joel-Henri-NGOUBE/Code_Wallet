@@ -7,12 +7,16 @@ export default function TagsLabel({tags, otherTags, fragments, setFragments, are
 
     function handleClickRemove(id: string, fragments: IFragment[]){
         setFragments((fs) => fs.map((f) => f.id === "1" ? ({...f, tags: tags.filter((t) => t.id !== id)}) : f))
-        console.log(fragments)
+        // console.log(fragments)
     }
 
     function handleClickAdd(id: string, name: string){
         setFragments((fs) => fs.map((f) => f.id === "1" ? ({...f, tags: [...tags, {id: id, name: name}]}) : f))
+        // console.log(tags, otherTags)
     }
+
+    // function log(){
+    // }
 
     return(
         <div className="tags-label">

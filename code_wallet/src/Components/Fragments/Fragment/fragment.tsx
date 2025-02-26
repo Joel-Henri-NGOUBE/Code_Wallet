@@ -2,8 +2,11 @@ import { Dispatch, MouseEvent, SetStateAction, useEffect } from "react"
 import Eye from "../../../assets/Eye.svg"
 import Remove from "../../../assets/remove.svg"
 import { Link } from "react-router-dom";
+import { IFragment } from "../../../interfaces/fragment";
+import { ITag } from "../../../interfaces/tag";
 
 interface FragmentProp{
+    tags: ITag[]
     index: number,
     fragment: IFragment,
     setFragments: Dispatch<SetStateAction<IFragment[]>>,
@@ -14,7 +17,7 @@ interface FragmentProp{
     // setModalValues: Dispatch<SetStateAction<IFragment>>
 }
 
-export default function Fragment({index, fragment, click, setViewClick, code, setCode, setFragments}: FragmentProp){
+export default function Fragment({tags, index, fragment, click, setViewClick, code, setCode, setFragments}: FragmentProp){
     
     useEffect(() => {
         if(!click[1]){
@@ -57,7 +60,15 @@ export default function Fragment({index, fragment, click, setViewClick, code, se
                 </div>
                 <div className="bottom">
                     <div className="tags">
-                    {fragment.tags.map((tag) => <span key={tag.id} className="tag">{tag.name}</span>)}
+                    {fragment.tagIds.map((tId) => {
+                        const name = tags.filter((t) => t.id === tId)[0].name
+                        // console.log(tId)
+                        // console.log(name)
+                        return <span key={tId} className="tag">{name}</span>
+                    }
+                    // <span key={index} className="tag" onClick={() => {handleTagClick(tags[index].name)}}>{tag.name}</span>
+                    )}
+                    {/* {fragment.tags.map((tag) => <span key={tag.id} className="tag">{tag.name}</span>)} */}
                     </div>
                 </div>
             </div></Link>) :
@@ -67,7 +78,13 @@ export default function Fragment({index, fragment, click, setViewClick, code, se
                 </div>
                 <div className="right">
                     <div className="tags">
-                        {fragment.tags.map((tag) => <span key={tag.id} className="tag">{tag.name}</span>)}
+                    {fragment.tagIds.map((tId) => {
+                        const name = tags.filter((t) => t.id === tId)[0].name
+                        return <span key={tId} className="tag">{name}</span>
+                    }
+                    // <span key={index} className="tag" onClick={() => {handleTagClick(tags[index].name)}}>{tag.name}</span>
+                    )}
+                        {/* {fragment.tags.map((tag) => <span key={tag.id} className="tag">{tag.name}</span>)} */}
                     </div>
                     <div className="icons">
                         <img src={Eye} alt="eye" width={30} onClick={(e) => handleClickEye(e, fragment)}/>

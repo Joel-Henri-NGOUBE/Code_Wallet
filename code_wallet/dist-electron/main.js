@@ -4203,7 +4203,7 @@ function requireReactDom_production_min() {
     b.hasOwnProperty("value") ? cb(a, b.type, c) : b.hasOwnProperty("defaultValue") && cb(a, b.type, Sa(b.defaultValue));
     null == b.checked && null != b.defaultChecked && (a.defaultChecked = !!b.defaultChecked);
   }
-  function db(a, b, c) {
+  function db2(a, b, c) {
     if (b.hasOwnProperty("value") || b.hasOwnProperty("defaultValue")) {
       var d = b.type;
       if (!("submit" !== d && "reset" !== d || void 0 !== b.value && null !== b.value)) return;
@@ -7820,7 +7820,7 @@ function requireReactDom_production_min() {
             switch (c) {
               case "input":
                 Va(d);
-                db(d, f, true);
+                db2(d, f, true);
                 break;
               case "textarea":
                 Va(d);
@@ -7910,7 +7910,7 @@ function requireReactDom_production_min() {
               switch (c) {
                 case "input":
                   Va(a);
-                  db(a, d, false);
+                  db2(a, d, false);
                   break;
                 case "textarea":
                   Va(a);
@@ -47494,6 +47494,65 @@ const { Router, registerRoute } = createElectronRouter({
     ids: ["main"]
   }
 });
+const JSONdb = require("simple-json-db");
+const uuid = require("uuid");
+const db = new JSONdb("./electron/database/database.json");
+const getTags = () => {
+  return db.get("tags");
+};
+const getFragments = () => {
+  return db.get("fragments");
+};
+const addTag = (name) => {
+  let tags2 = db.get("tags");
+  const existingNameCount = tags2.filter((tag) => tag.name === name).length;
+  const newTag = {
+    id: uuid.v1(),
+    name
+  };
+  console.log(name);
+  if (!existingNameCount) {
+    tags2.push(newTag);
+    console.log(tags2);
+    db.set("tags", tags2);
+  }
+  return newTag;
+};
+const addFragment = (fragment) => {
+  let fragments = db.get("fragments");
+  if (fragment.title && fragment.code) {
+    const existingTitleCount = fragments.filter((frag) => frag.title === fragment.title).length;
+    if (!existingTitleCount) {
+      fragments.push({
+        id: uuid.v1(),
+        title: fragment.title,
+        code: fragment.code,
+        tags: fragment.tags
+      });
+      db.set("tags", tags);
+    }
+  }
+};
+const setTag = (tag) => {
+  let tags2 = db.get("tags");
+  db.set("tags", tags2.map(
+    (t) => t.id === tag.id ? tag : t
+  ));
+};
+const setFragment = (fragment) => {
+  let fragments = db.get("fragments");
+  db.set("fragments", fragments.map(
+    (f) => f.id === fragment.id ? fragment : f
+  ));
+};
+const deleteTag = (tagId) => {
+  let tags2 = db.get("tags");
+  db.set("tags", tags2.filter((t) => t.id !== tagId));
+};
+const deleteFragment = (fragmentId) => {
+  let fragments = db.get("fragments");
+  db.set("fragments", fragments.filter((f) => f.id !== fragmentId));
+};
 node_module.createRequire(typeof document === "undefined" ? require("url").pathToFileURL(__filename).href : _documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === "SCRIPT" && _documentCurrentScript.src || new URL("main.js", document.baseURI).href);
 const __dirname$1 = path.dirname(node_url.fileURLToPath(typeof document === "undefined" ? require("url").pathToFileURL(__filename).href : _documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === "SCRIPT" && _documentCurrentScript.src || new URL("main.js", document.baseURI).href));
 process.env.APP_ROOT = path.join(__dirname$1, "..");
@@ -47538,39 +47597,14 @@ electron.app.on("activate", () => {
 electron.app.whenReady().then(() => {
   createWindow();
   electron.ipcMain.handle("bonjour", (e, th) => "Bonsoir " + th);
-  const codeSample = `pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
-                        ppppppppppppppppp
-                        ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
-                        pppppppppppppppppppppppp
-                        pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
-                        pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
-                        pppppppppppppppp
-                        ppppppppppppppppppppppppppp
-                        ppppppp
-                        pppppppppp
-                        pppp
-                        pppppppppppp
-                        pppppppppppppppppppppppp
-                        pppppppppppppppppppppppppppppppp
-                        pppppppppppp`;
-  const fragmentsSample = [
-    // {id: ""1"",title: "The actual title", code: "codeSample", tags: []}, 
-    { id: "1", title: "The actual title", code: codeSample, tags: [{ id: "15", name: "Tagadadadadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadaxdaadadadadadadadadadaddaadad" }, { id: "16", name: "Redux" }, { id: "17", name: "StateComponents" }, { id: "18", name: "ReactRedux" }, { id: "19", name: "ReduxToolkits" }, { id: "4", name: "Tag4" }, { id: "8", name: "Tag8" }] },
-    { id: "2", title: "The actual title", code: "codeSample", tags: [{ id: "4", name: "Tag4" }, { id: "9", name: "Tag9" }, { id: "10", name: "Tag10" }] },
-    { id: "3", title: "The actual title", code: "codeSample1", tags: [{ id: "2", name: "Tag2" }, { id: "5", name: "Tag5" }, { id: "8", name: "Tag8" }, { id: "9", name: "Tag9" }] },
-    { id: "4", title: "The actual title", code: "codeSample2", tags: [{ id: "3", name: "Tag3" }, { id: "7", name: "Tag7" }, { id: "9", name: "Tag9" }, { id: "1", name: "Tag1" }] },
-    { id: "5", title: "The actual title", code: "codeSample3", tags: [{ id: "4", name: "Tag4" }, { id: "7", name: "Tag7" }, { id: "5", name: "Tag5" }, { id: "7", name: "Tag7" }] },
-    { id: "6", title: "The actual title", code: "codeSample4", tags: [{ id: "1", name: "Tag1" }, { id: "12", name: "Tag12" }, { id: "11", name: "Tag11" }] },
-    { id: "7", title: "The actual title", code: "codeSample5", tags: [{ id: "5", name: "Tag5" }, { id: "3", name: "Tag3" }, { id: "2", name: "Tag2" }, { id: "12", name: "Tag12" }] },
-    { id: "8", title: "The actual title", code: "codeSample6", tags: [{ id: "11", name: "Tag11" }, { id: "2", name: "Tag2" }, { id: "8", name: "Tag8" }, { id: "9", name: "Tag9" }] },
-    { id: "9", title: "The actual title", code: "codeSample7", tags: [{ id: "1", name: "Tag1" }, { id: "2", name: "Tag2" }, { id: "3", name: "Tag3" }, { id: "4", name: "Tag4" }] },
-    { id: "10", title: "The actual title", code: "codeSample8", tags: [{ id: "7", name: "Tag7" }, { id: "6", name: "Tag6" }, { id: "5", name: "Tag5" }, { id: "10", name: "Tag10" }] },
-    { id: "11", title: "The actual title", code: "codeSample9", tags: [{ id: "10", name: "Tag10" }, { id: "7", name: "Tag7" }, { id: "9", name: "Tag9" }, { id: "11", name: "Tag11" }] },
-    { id: "12", title: "The actual title", code: "codeSample10", tags: [{ id: "2", name: "Tag2" }, { id: "7", name: "Tag7" }, { id: "9", name: "Tag9" }, { id: "12", name: "Tag12" }] }
-  ];
-  const tagsSample = [{ id: "1", name: "Tag1" }, { id: "2", name: "Tag2" }, { id: "3", name: "Tag3" }, { id: "4", name: "Tag4" }, { id: "5", name: "Tag5" }, { id: "6", name: "Tag6" }, { id: "7", name: "Tag7" }, { id: "8", name: "Tag8" }, { id: "9", name: "Tag9" }, { id: "10", name: "Tag10" }, { id: "11", name: "Tag11" }, { id: "12", name: "Tag12" }, { id: "13", name: "Tag13" }, { id: "14", name: "Tag14" }, { id: "15", name: "Tagadadadadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadaxdaadadadadadadadadadaddaadad" }, { id: "16", name: "Redux" }, { id: "17", name: "StateComponents" }, { id: "18", name: "ReactRedux" }, { id: "19", name: "ReduxToolkits" }];
-  electron.ipcMain.handle("getFragments", () => fragmentsSample);
-  electron.ipcMain.handle("getTags", () => tagsSample);
+  electron.ipcMain.handle("getFragments", () => getFragments());
+  electron.ipcMain.handle("getTags", () => getTags());
+  electron.ipcMain.handle("addTag", (_, tag) => addTag(tag));
+  electron.ipcMain.handle("addFragment", (_, fragment) => addFragment(fragment));
+  electron.ipcMain.handle("setTag", (_, tag) => setTag(tag));
+  electron.ipcMain.handle("setFragment", (_, fragment) => setFragment(fragment));
+  electron.ipcMain.handle("deleteTag", (_, tagId) => deleteTag(tagId));
+  electron.ipcMain.handle("deleteFragment", (_, fragmentId) => deleteFragment(fragmentId));
 });
 exports.MAIN_DIST = MAIN_DIST;
 exports.RENDERER_DIST = RENDERER_DIST;

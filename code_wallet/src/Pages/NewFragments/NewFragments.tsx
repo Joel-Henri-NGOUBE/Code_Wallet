@@ -46,32 +46,43 @@ export default function NewFragments(){
 
     const [areOtherTagsVisible, setAreOtherTagsVisible] = useState<boolean>(false)
 
-    function getCurrentTag(tags: ITag[], tagsToFilter: ITag[]){
-        const ids = tagsToFilter.reduce((acc: string[], val) => {acc.push(val.id); return acc}, [])
-        return tags.filter((tag) => !(ids.includes(tag.id)))
+    // const ids = tagsToFilter.reduce((acc: string[], val) => {acc.push(val.id); return acc}, [])
+    function getCurrentTag(tagsList: ITag[], fragmentTagsList: string[]){
+        return tagsList.filter((tag) => !(fragmentTagsList.includes(tag.id)))
     }
 
 //    const tags2 = ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]
 
     const [title, setTitle] = useState<string>("Title")
     const [tags, setTags] = useState<ITag[]>([])
+    // A utiliser
+    const [tagIds, setTagIds] = useState<string[]>([])
     const [code, setCode] = useState<string>("")
 
     useEffect(() => {
         async function getFragments() {
-            const a = await window.ipcRenderer.invoke("getFragments")
-            console.log(a)
+            const a: IFragment[] = await window.ipcRenderer.invoke("getFragments")
+            // console.log(a)
             setFragments(a)
-            id && setCode(fragments.filter((f) => f.id === id)[0].code)
-            id && setTitle(fragments.filter((f) => f.id === id)[0].title)
+            id && setCode(a.filter((f) => f.id === id)[0].code)
+            // console.log(a.filter((f) => f.id === id)[0].code)
+            id && setTitle(a.filter((f) => f.id === id)[0].title)
+            // console.log(a.filter((f) => f.id === id)[0].title)
         }
         getFragments()
     }, [])
 
+    // useEffect(() => {  
+    //         id && setCode(fragments.filter((f) => f.id === id)[0].code)
+    //         console.log(fragments.filter((f) => f.id === id)[0].code)
+    //         id && setTitle(fragments.filter((f) => f.id === id)[0].title)
+    //         console.log(fragments.filter((f) => f.id === id)[0].title)
+    // }, [])
+
     useEffect(() => {
         async function getTags() {
             const a = await window.ipcRenderer.invoke("getTags")
-            console.log(a)
+            // console.log(a)
             setTags(a)
         }
         getTags()
@@ -86,16 +97,22 @@ export default function NewFragments(){
         { fragments.length && <Form 
             title={title}
             setTitle={setTitle}
-            tags={id ? fragments.filter((f) => f.id === id)[0].tags : tags}
-            otherTags={id ? getCurrentTag(tags, fragments.filter((f) => f.id === id)[0].tags) : tags}
+            // tags={tags}
+            tags={id ? fragments.filter((f) => f.id === id)[0].tagIds.map((tI) => tags.filter((t) => t.id === tI)[0]) : tags}
+            otherTags={id ? getCurrentTag(tags, fragments.filter((f) => f.id === id)[0].tagIds) : tags}
             fragments={fragments}
             setFragments={setFragments}
             areOtherTagsVisible={areOtherTagsVisible}
             setAreOtherTagsVisible={setAreOtherTagsVisible}
             code={code}
             setCode={setCode}
+            
         />}
-        <Buttons />
+        <Buttons 
+            title={title}
+            code={code}
+            tags={id ? fragments.filter((f) => f.id === id)[0].tagIds.map((tI) => tags.filter((t) => t.id === tI)[0]) : tags}
+        />
     </div>
     )
 }

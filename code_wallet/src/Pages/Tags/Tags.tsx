@@ -11,6 +11,7 @@ import Slider from "../../Components/Sliders/Tags/Slider/slider";
 import Modal from "../../Components/Modals/Tags/Container/modal";
 import { ModalsVisibility } from "../../types/modalsVisibility";
 import { IFragment } from "../../interfaces/fragment";
+import { ITag } from "../../interfaces/tag";
 
 export default function Tags(){
 
@@ -21,12 +22,12 @@ export default function Tags(){
 //        {id: "3", title: "Title", tags: [{id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}]}
 //     ]
     
-    const [tagValue, setTagValue] = useState<string>("")
+    const [tagValue, setTagValue] = useState<ITag>({id: "", name: ""})
 
     // const [currentTagIndex, setCurrentTagIndex] = useState< number | null >(null)
     
     // Tous les tags ou allTags
-    const [tags, setTags] = useState<{id: number, name: string}[]>([])
+    const [tags, setTags] = useState<ITag[]>([])
     
     // Variable Fragments
     const [fragments, setFragments] = useState<IFragment[]>([])
@@ -38,7 +39,7 @@ export default function Tags(){
     useEffect(() => {
         async function getFragments() {
             const a = await window.ipcRenderer.invoke("getFragments")
-            console.log(a)
+            // console.log(a)
             setFragments(a)
         }
         getFragments()
@@ -47,7 +48,7 @@ export default function Tags(){
     useEffect(() => {
         async function getTags() {
             const a = await window.ipcRenderer.invoke("getTags")
-            console.log(a)
+            // console.log(a)
             setTags(a)
         }
         getTags()
@@ -82,6 +83,7 @@ export default function Tags(){
             <Modal
                 tagValue={tagValue}
                 setTagValue={setTagValue}
+                setTags={setTags}
                 // currentTagIndex={currentTagIndex}
                 // setCurrentTagIndex={setCurrentTagIndex}
                 modalsVisibility={modalsVisibility}

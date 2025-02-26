@@ -19,6 +19,7 @@ export default function Slider({tags, fragments, tagValue, setTagValue, setTags,
                 />
 
                 <TagsPerFragment
+                    tags={tags}
                     tagValue={tagValue}
                     setTagValue={setTagValue}
                     fragments={fragments}

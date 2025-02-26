@@ -4,8 +4,16 @@ import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 import { registerRoute } from '../src/lib/electron-router-dom'
 import { IFragment } from '../src/interfaces/fragment'
+import { getFragments, getTags, addFragment, addTag, setTag, setFragment, deleteTag, deleteFragment } from "./database/database.js"
+
 
 const require = createRequire(import.meta.url)
+// const { addFragment } = require("./database/database.js")
+// const { addTag } = require("./database/database.js")
+// const { setTag } = require("./database/database.js")
+// const { setFragment } = require("./database/database.js")
+// const { deleteTag } = require("./database/database.js")
+// const { deleteFragment } = require("./database/database.js")
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // The built directory structure
@@ -97,26 +105,38 @@ app.whenReady().then(() => {
 
     const fragmentsSample: IFragment[] = [
       // {id: ""1"",title: "The actual title", code: "codeSample", tags: []}, 
-      {id: "1",title: "The actual title", code: codeSample, tags: [{id: "15", name: "Tagadadadadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadaxdaadadadadadadadadadaddaadad"}, {id: "16", name: "Redux"}, {id: "17", name: "StateComponents"}, {id: "18", name: "ReactRedux"}, {id: "19", name: "ReduxToolkits"}, {id: "4", name: "Tag4"}, {id: "8", name: "Tag8"}]}, 
-      {id: "2",title: "The actual title", code: "codeSample", tags: [{id: "4", name: "Tag4"}, {id: "9", name: "Tag9"}, {id: "10", name: "Tag10"}]},
-      {id: "3",title: "The actual title", code: "codeSample1", tags: [{id: "2", name: "Tag2"}, {id: "5", name: "Tag5"}, {id: "8", name: "Tag8"}, {id: "9", name: "Tag9"}]},
-      {id: "4",title: "The actual title", code: "codeSample2", tags: [{id: "3", name: "Tag3"}, {id: "7", name: "Tag7"}, {id: "9", name: "Tag9"}, {id: "1", name: "Tag1"}]},
-      {id: "5",title: "The actual title", code: "codeSample3", tags: [{id: "4", name: "Tag4"}, {id: "7", name: "Tag7"}, {id: "5", name: "Tag5"}, {id: "7", name: "Tag7"}]},
-      {id: "6",title: "The actual title", code: "codeSample4", tags: [{id: "1", name: "Tag1"}, {id: "12", name: "Tag12"}, {id: "11", name: "Tag11"}]},
-      {id: "7",title: "The actual title", code: "codeSample5", tags: [{id: "5", name: "Tag5"}, {id: "3", name: "Tag3"}, {id: "2", name: "Tag2"}, {id: "12", name: "Tag12"}]},
-      {id: "8",title: "The actual title", code: "codeSample6", tags: [{id: "11", name: "Tag11"}, {id: "2", name: "Tag2"}, {id: "8", name: "Tag8"}, {id: "9", name: "Tag9"}]},
-      {id: "9",title: "The actual title", code: "codeSample7", tags: [{id: "1", name: "Tag1"}, {id: "2", name: "Tag2"}, {id: "3", name: "Tag3"}, {id: "4", name: "Tag4"}]},
-      {id: "10",title: "The actual title", code: "codeSample8", tags: [{id: "7", name: "Tag7"}, {id: "6", name: "Tag6"}, {id: "5", name: "Tag5"}, {id: "10", name: "Tag10"}]},
-      {id: "11",title: "The actual title", code: "codeSample9", tags: [{id: "10", name: "Tag10"}, {id: "7", name: "Tag7"}, {id: "9", name: "Tag9"}, {id: "11", name: "Tag11"}]},
-      {id: "12",title: "The actual title", code: "codeSample10", tags: [{id: "2", name: "Tag2"}, {id: "7", name: "Tag7"}, {id: "9", name: "Tag9"}, {id: "12", name: "Tag12"}]}
+      {id: "1",title: "The actual title", code: codeSample, tagIds: ["15", "16", "17", "18", "19", "4", "8"]}, 
+      {id: "2",title: "The actual title", code: "codeSample", tagIds: ["4", "9", "10"]},
+      {id: "3",title: "The actual title", code: "codeSample1", tagIds: ["2", "5", "8", "9"]},
+      {id: "4",title: "The actual title", code: "codeSample2", tagIds: ["3", "7", "9", "1"]},
+      {id: "5",title: "The actual title", code: "codeSample3", tagIds: ["4", "7", "5", "7"]},
+      {id: "6",title: "The actual title", code: "codeSample4", tagIds: ["1", "12", "11"]},
+      {id: "7",title: "The actual title", code: "codeSample5", tagIds: ["5", "3", "2", "12"]},
+      {id: "8",title: "The actual title", code: "codeSample6", tagIds: ["11", "2", "8", "9"]},
+      {id: "9",title: "The actual title", code: "codeSample7", tagIds: ["1", "2", "3", "4"]},
+      {id: "10",title: "The actual title", code: "codeSample8", tagIds: ["7", "6", "5", "10"]},
+      {id: "11",title: "The actual title", code: "codeSample9", tagIds: ["10", "7", "9", "11"]},
+      {id: "12",title: "The actual title", code: "codeSample10", tagIds: ["2", "7", "9", "12"]}
   ]
-
+  
   const tagsSample = [{ id: "1", name: "Tag1" }, { id: "2", name: "Tag2" }, { id: "3", name: "Tag3" }, { id: "4", name: "Tag4" }, { id: "5", name: "Tag5" }, { id: "6", name: "Tag6" }, { id: "7", name: "Tag7" }, { id: "8", name: "Tag8" }, { id: "9", name: "Tag9" }, { id: "10", name: "Tag10" }, { id: "11", name: "Tag11" }, { id: "12", name: "Tag12" }, { id: "13", name: "Tag13" }, { id: "14", name: "Tag14" }, { id: "15", name: "Tagadadadadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadaxdaadadadadadadadadadaddaadad" }, { id: "16", name: "Redux" }, { id: "17", name: "StateComponents" }, { id: "18", name: "ReactRedux" }, { id: "19", name: "ReduxToolkits" },]
 
-  ipcMain.handle("getFragments", () => fragmentsSample)
 
-  // ipcMain.handle("addFragment", (fragment) => dbAdd(fragment))
+  ipcMain.handle("getFragments", () => getFragments())
 
-  ipcMain.handle("getTags", () => tagsSample)
+  ipcMain.handle("getTags", () => getTags())
+  
+  ipcMain.handle("addTag", (_, tag) => addTag(tag))
+
+  ipcMain.handle("addFragment", (_, fragment) => addFragment(fragment))
+
+  ipcMain.handle("setTag", (_, tag) => setTag(tag))
+
+  ipcMain.handle("setFragment", (_, fragment) => setFragment(fragment))
+
+  ipcMain.handle("deleteTag", (_, tagId) => deleteTag(tagId))
+
+  ipcMain.handle("deleteFragment", (_, fragmentId) => deleteFragment(fragmentId))
+
 
 })

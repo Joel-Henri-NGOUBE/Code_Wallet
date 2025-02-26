@@ -4,7 +4,7 @@ export default function Title({tagValue, setTagValue, modalsVisibility, setModal
 
     function handleClickNew(editVisibility: boolean){
         setModalsVisibility({new: true, edit: editVisibility})
-        setTagValue("")
+        setTagValue({id: "", name: ""})
     }
 
     return (
