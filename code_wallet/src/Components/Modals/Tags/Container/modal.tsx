@@ -2,7 +2,7 @@ import { tagEditor } from "../../../../interfaces/tagEditor";
 import EditTag from "../EditTag";
 import NewTag from "../NewTag";
 
-export default function Modal({tagValue, setTagValue, setTags, modalsVisibility, setModalsVisibility}: tagEditor){
+export default function Modal({tagValue, setTagValue, setTags, modalsVisibility, setModalsVisibility, setFragments}: tagEditor){
     return(
         <div className="modal-container" style={modalsVisibility.edit || modalsVisibility.new ? {display: "flex"} : {display: "none"}}>
             <NewTag 
@@ -13,6 +13,7 @@ export default function Modal({tagValue, setTagValue, setTags, modalsVisibility,
                 setTags={setTags}
                 modalsVisibility={modalsVisibility}
                 setModalsVisibility={setModalsVisibility}
+                setFragments={setFragments}
             />
             <EditTag
                 tagValue={tagValue}
@@ -22,6 +23,7 @@ export default function Modal({tagValue, setTagValue, setTags, modalsVisibility,
                 // setCurrentTagIndex={setCurrentTagIndex}
                 modalsVisibility={modalsVisibility}
                 setModalsVisibility={setModalsVisibility}
+                setFragments={setFragments}
             />
         </div>
     )

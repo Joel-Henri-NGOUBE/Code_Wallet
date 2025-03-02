@@ -64,8 +64,7 @@
             "code": "codeSample4",
             "tagIds": [
                 "1",
-                "12",
-                "11"
+                "12"
             ]
         },
         {
@@ -84,7 +83,6 @@
             "title": "The actual title",
             "code": "codeSample6",
             "tagIds": [
-                "11",
                 "2",
                 "8",
                 "9"
@@ -119,8 +117,7 @@
             "tagIds": [
                 "10",
                 "7",
-                "9",
-                "11"
+                "9"
             ]
         },
         {

@@ -84,8 +84,16 @@ export const setFragment = (fragment) => {
 
 export const deleteTag = (tagId) => {
     let tags = db.get("tags")
+
+    let fragments = db.get("fragments")
+
+    db.set("fragments", fragments.map((f) => 
+        f.tagIds.includes(tagId) ? ({...f, tagIds: f.tagIds.filter(tI => tI !== tagId)}) : f
+    ))
     
     db.set("tags", tags.filter((t) => t.id !== tagId ))
+
+    return "Tag Deleted"
 }
 
 export const deleteFragment = (fragmentId) => {

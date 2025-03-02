@@ -88,6 +88,7 @@ export default function Tags(){
                 // setCurrentTagIndex={setCurrentTagIndex}
                 modalsVisibility={modalsVisibility}
                 setModalsVisibility={setModalsVisibility}
+                setFragments={setFragments}
             />
         </div>
     )

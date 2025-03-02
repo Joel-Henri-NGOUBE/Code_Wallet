@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import { tagEditor } from "../../../interfaces/tagEditor";
 import { ITag } from "../../../interfaces/tag";
 
-export default function EditTag({tagValue, setTagValue, setTags, modalsVisibility, setModalsVisibility}: tagEditor ): ReactElement{
+export default function EditTag({tagValue, setTagValue, setTags, modalsVisibility, setModalsVisibility, setFragments}: tagEditor ): ReactElement{
 
     async function handleClickSave(tagValue: ITag){
         await window.ipcRenderer.invoke("setTag", tagValue)
@@ -10,9 +10,13 @@ export default function EditTag({tagValue, setTagValue, setTags, modalsVisibilit
 
     }
 
-    async function handleClickDelete(tagValue: string){
-        await window.ipcRenderer.invoke("deleteTag", tagValue)
-        setTags((tags) => tags.filter((t) => t.id !== tagValue))
+    async function handleClickDelete(tagId: string){
+        setFragments((fs) => fs.map((f) => 
+            f.tagIds.includes(tagId) ? ({...f, tagIds: f.tagIds.filter(tI => tI !== tagId)}) : f
+        ))
+        await window.ipcRenderer.invoke("deleteTag", tagId)
+        // if (removal) console.log(window.location.href)
+        setTags((tags) => tags.filter((t) => t.id !== tagId))
     }
 
     return (
