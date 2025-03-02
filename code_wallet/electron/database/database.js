@@ -58,9 +58,9 @@ export const addFragment = (fragment) => {
                 id: uuid.v1(),
                 title: fragment.title,
                 code: fragment.code,
-                tags: fragment.tags
+                tagIds: fragment.tagIds
             })
-            db.set("tags", tags)
+            db.set("fragments", fragments)
         }
     }
 

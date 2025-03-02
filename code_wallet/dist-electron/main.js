@@ -47504,17 +47504,17 @@ const getFragments = () => {
   return db.get("fragments");
 };
 const addTag = (name) => {
-  let tags2 = db.get("tags");
-  const existingNameCount = tags2.filter((tag) => tag.name === name).length;
+  let tags = db.get("tags");
+  const existingNameCount = tags.filter((tag) => tag.name === name).length;
   const newTag = {
     id: uuid.v1(),
     name
   };
   console.log(name);
   if (!existingNameCount) {
-    tags2.push(newTag);
-    console.log(tags2);
-    db.set("tags", tags2);
+    tags.push(newTag);
+    console.log(tags);
+    db.set("tags", tags);
   }
   return newTag;
 };
@@ -47527,15 +47527,15 @@ const addFragment = (fragment) => {
         id: uuid.v1(),
         title: fragment.title,
         code: fragment.code,
-        tags: fragment.tags
+        tagIds: fragment.tagIds
       });
-      db.set("tags", tags);
+      db.set("fragments", fragments);
     }
   }
 };
 const setTag = (tag) => {
-  let tags2 = db.get("tags");
-  db.set("tags", tags2.map(
+  let tags = db.get("tags");
+  db.set("tags", tags.map(
     (t) => t.id === tag.id ? tag : t
   ));
 };
@@ -47546,8 +47546,8 @@ const setFragment = (fragment) => {
   ));
 };
 const deleteTag = (tagId) => {
-  let tags2 = db.get("tags");
-  db.set("tags", tags2.filter((t) => t.id !== tagId));
+  let tags = db.get("tags");
+  db.set("tags", tags.filter((t) => t.id !== tagId));
 };
 const deleteFragment = (fragmentId) => {
   let fragments = db.get("fragments");

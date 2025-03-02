@@ -56,8 +56,11 @@ export default function NewFragments(){
     const [title, setTitle] = useState<string>("Title")
     const [tags, setTags] = useState<ITag[]>([])
     // A utiliser
-    const [tagIds, setTagIds] = useState<string[]>([])
+    // const [tagIds, setTagIds] = useState<string[]>([])
+
+
     const [code, setCode] = useState<string>("")
+    const [fragmentTags, setFragmentTags] = useState<ITag[]>([])
 
     useEffect(() => {
         async function getFragments() {
@@ -88,6 +91,12 @@ export default function NewFragments(){
         getTags()
     }, [])
 
+    useEffect(() => {
+        // console.log(id)
+        // console.log(fragments.filter((f) => f.id === id)[0])
+        (fragments.length && id) && setFragmentTags(fragments.filter((f) => f.id === id)[0].tagIds.map((tI) => tags.filter((t) => t.id === tI)[0]))
+    }, [fragments])
+
     return (
     <div className="newfragments">
         <Header />
@@ -98,21 +107,29 @@ export default function NewFragments(){
             title={title}
             setTitle={setTitle}
             // tags={tags}
-            tags={id ? fragments.filter((f) => f.id === id)[0].tagIds.map((tI) => tags.filter((t) => t.id === tI)[0]) : tags}
-            otherTags={id ? getCurrentTag(tags, fragments.filter((f) => f.id === id)[0].tagIds) : tags}
+            // Un useEffect dépendant de Fragments pour modifier les tags
+            tags={fragmentTags}
+            // otherTags={tags}
+            otherTags={getCurrentTag(tags, fragmentTags.map(fT => fT.id))}
             fragments={fragments}
             setFragments={setFragments}
             areOtherTagsVisible={areOtherTagsVisible}
             setAreOtherTagsVisible={setAreOtherTagsVisible}
             code={code}
             setCode={setCode}
+            setFragmentTags={setFragmentTags}
             
         />}
-        <Buttons 
+        {id ? <Buttons 
+            id={id}
             title={title}
             code={code}
-            tags={id ? fragments.filter((f) => f.id === id)[0].tagIds.map((tI) => tags.filter((t) => t.id === tI)[0]) : tags}
-        />
+            tags={fragmentTags}
+        /> : <Buttons
+            title={title}
+            code={code}
+            tags={fragmentTags}
+        />}
     </div>
     )
 }

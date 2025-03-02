@@ -14,5 +14,6 @@ export interface IForm extends titleEditor, codeEditor{
     areOtherTagsVisible: boolean,
     setAreOtherTagsVisible: Dispatch<SetStateAction<boolean>>,
     code: string,
-    setCode: Dispatch<SetStateAction<string>>
+    setCode: Dispatch<SetStateAction<string>>,
+    setFragmentTags: Dispatch<SetStateAction<ITag[]>>
 }

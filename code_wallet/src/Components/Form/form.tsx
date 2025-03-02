@@ -3,7 +3,7 @@ import Code from "./NewFragments/code";
 import FragmentTitle from "./NewFragments/fragmentTitle";
 import TagsLabel from "./NewFragments/tags";
 
-export default function Form({title, setTitle, fragments, setFragments, areOtherTagsVisible, setAreOtherTagsVisible, tags, otherTags, code, setCode}: IForm){
+export default function Form({title, setTitle, fragments, setFragments, areOtherTagsVisible, setAreOtherTagsVisible, tags, otherTags, code, setCode, setFragmentTags}: IForm){
     return(
         <div className="form">
             <FragmentTitle 
@@ -19,6 +19,7 @@ export default function Form({title, setTitle, fragments, setFragments, areOther
                 tags={tags}
                 // fragmentTags={fragmentTags}
                 otherTags={otherTags}
+                setFragmentTags={setFragmentTags}
             />
             
             <Code 

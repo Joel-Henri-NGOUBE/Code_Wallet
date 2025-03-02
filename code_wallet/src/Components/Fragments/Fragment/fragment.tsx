@@ -42,9 +42,10 @@ export default function Fragment({tags, index, fragment, click, setViewClick, co
         // setModalValues(fragment)
     }
 
-    function handleClickRemove(e: MouseEvent, fragment: IFragment){
+    async function handleClickRemove(e: MouseEvent, fragment: IFragment){
         e.preventDefault()
         setFragments((f: IFragment[]) => f.filter((frag) => frag.id !== fragment.id))
+        await window.ipcRenderer.invoke("deleteFragment", fragment.id)
     }
 
     return(

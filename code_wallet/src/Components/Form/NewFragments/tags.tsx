@@ -3,15 +3,15 @@ import Plus from "../../../assets/plus.svg"
 import { Dispatch, SetStateAction } from "react"
 import { ITag } from "../../../interfaces/tag"
 import { IFragment } from "../../../interfaces/fragment"
-export default function TagsLabel({tags, otherTags, fragments, setFragments, areOtherTagsVisible, setAreOtherTagsVisible}: {tags: ITag[], otherTags: ITag[], areOtherTagsVisible: boolean, setAreOtherTagsVisible: Dispatch<SetStateAction<boolean>>, fragments: IFragment[], setFragments: Dispatch<SetStateAction<IFragment[]>>}){
+export default function TagsLabel({tags, otherTags, fragments, setFragments, areOtherTagsVisible, setAreOtherTagsVisible, setFragmentTags}: {tags: ITag[], otherTags: ITag[], areOtherTagsVisible: boolean, setAreOtherTagsVisible: Dispatch<SetStateAction<boolean>>, fragments: IFragment[], setFragments: Dispatch<SetStateAction<IFragment[]>>, setFragmentTags: Dispatch<SetStateAction<ITag[]>>}){
 
     function handleClickRemove(id: string, fragments: IFragment[]){
-        setFragments((fs) => fs.map((f) => f.id === "1" ? ({...f, tags: tags.filter((t) => t.id !== id)}) : f))
+        setFragmentTags(fT => fT.filter((ft) => ft.id !== id))// setFragments((fs) => fs.map((f) => f.id === "1" ? ({...f, tags: tags.filter((t) => t.id !== id)}) : f))
         // console.log(fragments)
     }
 
     function handleClickAdd(id: string, name: string){
-        setFragments((fs) => fs.map((f) => f.id === "1" ? ({...f, tags: [...tags, {id: id, name: name}]}) : f))
+        setFragmentTags(fT => [...fT, {id: id, name: name}])// setFragments((fs) => fs.map((f) => f.id === "1" ? ({...f, tags: [...tags, {id: id, name: name}]}) : f))
         // console.log(tags, otherTags)
     }
 
