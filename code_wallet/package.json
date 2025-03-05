@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "electron-router-dom": "^2.0.0",
+    "highlight.js": "^11.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^7.1.1",
+    "react-syntax-highlighter": "^15.6.1",
     "simple-json-db": "^2.0.0",
     "uuid": "^11.1.0",
     "vite-plugin-commonjs": "^0.10.4"
@@ -21,6 +23,7 @@
   "devDependencies": {
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
     "@vitejs/plugin-react": "^4.2.1",

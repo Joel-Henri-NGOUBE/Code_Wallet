@@ -3,7 +3,7 @@
         {
             "id": "1",
             "title": "The actual title",
-            "code": "codeSample",
+            "code": "import { Dispatch, SetStateAction } from \"react\";\nimport hljs from \"highlight.js\";\nimport javascript from 'highlight.js/lib/languages/javascript';\nimport { FragmentModal } from \"../../../interfaces/fragmentModal\";\n\nexport default function Modal({ viewClick, setViewClick, code, setCode}: FragmentModal){\n    return(\n        <div className=\"modal-container\" style={viewClick ? {display: \"flex\"} : {display: \"none\"}}>\n                <div className=\"modal-code\">\n                    <h2>The actual title</h2>\n                    <p className=\"close\" onClick={() => setViewClick(false)}>X</p>\n                    <div className=\"code\">\n                        <p id=\"code\">\n                            {/* {`${hljs.highlight(code, {language: \"python\"}).value}`} */}\n                            <SyntaxHighlighter style={docco} showLineNumbers={true} customStyle={{borderRadius: \"5px\"}}>\n                                {code}\n                                {/* {hljs.highlight(code, {language: \"xml\"}).value} */}\n                            </SyntaxHighlighter>\n                            {/* {hljs.} */}\n                            {/* <input type=\"text\" value={hljs.highlight(code, {language: \"python\"}).value} /> */}\n                        </p>\n                    </div>\n                    <button id=\"copy\" onClick={() => navigator.clipboard.writeText(code)}>Copy</button>\n                </div>\n            </div>\n    )\n}",
             "tagIds": [
                 "15",
                 "16",
@@ -70,7 +70,7 @@
         {
             "id": "7",
             "title": "The actual title",
-            "code": "codeSample5",
+            "code": "const hey = () => {\n     const a = 10\n      console.log(a)\n}\n\n// Comentarios",
             "tagIds": [
                 "5",
                 "3",
@@ -85,7 +85,9 @@
             "tagIds": [
                 "2",
                 "8",
-                "9"
+                "9",
+                "7",
+                "6"
             ]
         },
         {
