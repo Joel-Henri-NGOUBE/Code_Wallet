@@ -17,12 +17,14 @@ interface FragmentsProp{
 
 export default function FragmentsComponent({tags, fragments, setFragments, click, setViewClick, code, setCode}: FragmentsProp){
     return(
-        click[1] ?
-        (<div className="fragments">
-            {fragments.map((fragment, index) => <Fragment tags={tags} index={index} fragment={fragment} setFragments={setFragments} click={click} setViewClick={setViewClick} code={code} setCode={setCode}/>)}
-        </div>) :
-        (<div className="fragments2">
-            {fragments.map((fragment, index) => <Fragment tags={tags} index={index} fragment={fragment} setFragments={setFragments} click={click} setViewClick={setViewClick} code={code} setCode={setCode}/>)}
-        </div>)
+        fragments.length 
+        ? (click[1] ?
+            (<div className="fragments">
+                {fragments.map((fragment, index) => <Fragment tags={tags} index={index} fragment={fragment} setFragments={setFragments} click={click} setViewClick={setViewClick} code={code} setCode={setCode}/>)}
+            </div>) :
+            (<div className="fragments2">
+                {fragments.map((fragment, index) => <Fragment tags={tags} index={index} fragment={fragment} setFragments={setFragments} click={click} setViewClick={setViewClick} code={code} setCode={setCode}/>)}
+            </div>))
+        : <p>No fragment yet</p>
     )
 }

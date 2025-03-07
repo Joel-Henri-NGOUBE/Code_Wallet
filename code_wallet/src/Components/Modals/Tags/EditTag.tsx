@@ -7,7 +7,7 @@ export default function EditTag({tagValue, setTagValue, setTags, modalsVisibilit
     async function handleClickSave(tagValue: ITag){
         await window.ipcRenderer.invoke("setTag", tagValue)
         setTags((tags) => tags.map((t) => t.id === tagValue.id ? tagValue : t))
-
+        setModalsVisibility(mV => ({edit: false, new: mV.new}))
     }
 
     async function handleClickDelete(tagId: string){
@@ -17,6 +17,7 @@ export default function EditTag({tagValue, setTagValue, setTags, modalsVisibilit
         await window.ipcRenderer.invoke("deleteTag", tagId)
         // if (removal) console.log(window.location.href)
         setTags((tags) => tags.filter((t) => t.id !== tagId))
+        setModalsVisibility(mV => ({edit: false, new: mV.new}))
     }
 
     return (

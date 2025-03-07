@@ -5,9 +5,10 @@ import TagsPerFragment from "../Parts/tagPerFragments";
 export default function Slider({tags, fragments, tagValue, setTagValue, setTags, setFragments, modalsVisibility, setModalsVisibility}: Tags){
     return(
         <div className="slider">
+
             <div className="slider-wrapper">
 
-                <AllTags
+                {tags.length ? <><AllTags
                     tags={tags}
                     setTags={setTags}
                     tagValue={tagValue}
@@ -17,6 +18,7 @@ export default function Slider({tags, fragments, tagValue, setTagValue, setTags,
                     modalsVisibility={modalsVisibility}
                     setModalsVisibility={setModalsVisibility}
                 />
+                
 
                 <TagsPerFragment
                     tags={tags}
@@ -26,9 +28,12 @@ export default function Slider({tags, fragments, tagValue, setTagValue, setTags,
                     setFragments={setFragments}
                     modalsVisibility={modalsVisibility}
                     setModalsVisibility={setModalsVisibility}
-                />
+                /></>
+                : <p style={{margin: "auto"}}>No tag yet</p>}
+
                 
             </div>
+            
         </div>
     )
 }

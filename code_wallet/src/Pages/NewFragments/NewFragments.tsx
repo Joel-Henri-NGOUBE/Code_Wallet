@@ -53,7 +53,7 @@ export default function NewFragments(){
 
 //    const tags2 = ["Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]
 
-    const [title, setTitle] = useState<string>("Title")
+    const [title, setTitle] = useState<string>("")
     const [tags, setTags] = useState<ITag[]>([])
     // A utiliser
     // const [tagIds, setTagIds] = useState<string[]>([])
@@ -103,7 +103,7 @@ export default function NewFragments(){
 
         <Title />
         {/* {id ? `${fragments.filter((f) => f.id === id)[0].code}` : "ningùn id"} */}
-        { fragments.length && <Form 
+        <Form 
             title={title}
             setTitle={setTitle}
             // tags={tags}
@@ -119,7 +119,7 @@ export default function NewFragments(){
             setCode={setCode}
             setFragmentTags={setFragmentTags}
             
-        />}
+        />
         {id ? <Buttons 
             id={id}
             title={title}

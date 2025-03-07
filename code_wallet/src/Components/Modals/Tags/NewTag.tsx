@@ -7,6 +7,7 @@ export default function NewTag({tagValue, setTagValue, setTags, modalsVisibility
     async function handleClick(tagValue: ITag){
         const newTag = await window.ipcRenderer.invoke("addTag", tagValue.name)
         setTags(t => [...t, newTag])
+        setModalsVisibility(mV => ({edit: mV.edit, new: false}))
     }
 
     return (
