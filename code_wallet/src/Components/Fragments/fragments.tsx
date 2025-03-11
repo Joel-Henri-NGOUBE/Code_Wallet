@@ -11,19 +11,18 @@ interface FragmentsProp{
     click: boolean[],
     // setModalValues: Dispatch<SetStateAction<IFragment>>,
     setViewClick: Dispatch<SetStateAction<boolean>>,
-    code: string,
     setCode: Dispatch<SetStateAction<string>>
 }
 
-export default function FragmentsComponent({tags, fragments, setFragments, click, setViewClick, code, setCode}: FragmentsProp){
+export default function FragmentsComponent({tags, fragments, setFragments, click, setViewClick, setCode}: FragmentsProp){
     return(
         fragments.length 
         ? (click[1] ?
             (<div className="fragments">
-                {fragments.map((fragment, index) => <Fragment tags={tags} index={index} fragment={fragment} setFragments={setFragments} click={click} setViewClick={setViewClick} code={code} setCode={setCode}/>)}
+                {fragments.map((fragment, index) => <Fragment tags={tags} index={index} fragment={fragment} setFragments={setFragments} click={click} setViewClick={setViewClick} setCode={setCode}/>)}
             </div>) :
             (<div className="fragments2">
-                {fragments.map((fragment, index) => <Fragment tags={tags} index={index} fragment={fragment} setFragments={setFragments} click={click} setViewClick={setViewClick} code={code} setCode={setCode}/>)}
+                {fragments.map((fragment, index) => <Fragment tags={tags} index={index} fragment={fragment} setFragments={setFragments} click={click} setViewClick={setViewClick} setCode={setCode}/>)}
             </div>))
         : <p>No fragment yet</p>
     )

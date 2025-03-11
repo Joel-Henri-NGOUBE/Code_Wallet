@@ -3,7 +3,7 @@ import { ReactElement } from "react";
 import { tagsList } from "../../../../interfaces/tagsList";
 import { ITag } from "../../../../interfaces/tag";
 
-export default function AllTags({tags, setTags, tagValue, setTagValue, modalsVisibility, setModalsVisibility}: tagsList ): ReactElement{
+export default function AllTags({tags, setTagValue, modalsVisibility, setModalsVisibility}: tagsList ): ReactElement{
 
     function handleTagClick(tag: ITag){
         setModalsVisibility({edit: true, new: modalsVisibility.new});

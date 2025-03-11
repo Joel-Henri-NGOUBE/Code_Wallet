@@ -4,7 +4,6 @@ var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { en
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const electron = require("electron");
-const node_module = require("node:module");
 const node_url = require("node:url");
 const path = require("node:path");
 var _documentCurrentScript = typeof document !== "undefined" ? document.currentScript : null;
@@ -47558,7 +47557,6 @@ const deleteFragment = (fragmentId) => {
   let fragments = db.get("fragments");
   db.set("fragments", fragments.filter((f) => f.id !== fragmentId));
 };
-node_module.createRequire(typeof document === "undefined" ? require("url").pathToFileURL(__filename).href : _documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === "SCRIPT" && _documentCurrentScript.src || new URL("main.js", document.baseURI).href);
 const __dirname$1 = path.dirname(node_url.fileURLToPath(typeof document === "undefined" ? require("url").pathToFileURL(__filename).href : _documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === "SCRIPT" && _documentCurrentScript.src || new URL("main.js", document.baseURI).href));
 process.env.APP_ROOT = path.join(__dirname$1, "..");
 const VITE_DEV_SERVER_URL = process.env["VITE_DEV_SERVER_URL"];
@@ -47569,6 +47567,7 @@ let win;
 function createWindow() {
   win = new electron.BrowserWindow({
     icon: path.join(process.env.VITE_PUBLIC, "vite.svg"),
+    autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname$1, "preload.mjs")
       // main: 
@@ -47588,12 +47587,6 @@ function createWindow() {
     htmlFile: path.join(__dirname$1, "/index.html")
   });
 }
-electron.app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
-    electron.app.quit();
-    win = null;
-  }
-});
 electron.app.on("activate", () => {
   if (electron.BrowserWindow.getAllWindows().length === 0) {
     createWindow();
@@ -47601,7 +47594,6 @@ electron.app.on("activate", () => {
 });
 electron.app.whenReady().then(() => {
   createWindow();
-  electron.ipcMain.handle("bonjour", (e, th) => "Bonsoir " + th);
   electron.ipcMain.handle("getFragments", () => getFragments());
   electron.ipcMain.handle("getTags", () => getTags());
   electron.ipcMain.handle("addTag", (_, tag) => addTag(tag));

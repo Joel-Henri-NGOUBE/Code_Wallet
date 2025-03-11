@@ -1,10 +1,9 @@
-import { Dispatch, SetStateAction } from "react";
 import { FragmentModal } from "../../../interfaces/fragmentModal";
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 
-export default function Modal({ viewClick, setViewClick, code, setCode}: FragmentModal){
+export default function Modal({ viewClick, setViewClick, code}: FragmentModal){
     return(
         <div className="modal-container" style={viewClick ? {display: "flex"} : {display: "none"}}>
                 <div className="modal-code">

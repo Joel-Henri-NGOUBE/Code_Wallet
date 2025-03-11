@@ -12,12 +12,11 @@ interface FragmentProp{
     setFragments: Dispatch<SetStateAction<IFragment[]>>,
     click: boolean[],
     setViewClick: Dispatch<SetStateAction<boolean>>,
-    code: string,
     setCode: Dispatch<SetStateAction<string>>
     // setModalValues: Dispatch<SetStateAction<IFragment>>
 }
 
-export default function Fragment({tags, index, fragment, click, setViewClick, code, setCode, setFragments}: FragmentProp){
+export default function Fragment({tags, index, fragment, click, setViewClick, setCode, setFragments}: FragmentProp){
     
     useEffect(() => {
         if(!click[1]){

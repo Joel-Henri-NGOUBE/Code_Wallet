@@ -93,7 +93,6 @@ export default function Fragments(){
                 fragments={fragments}
                 setFragments={setFragments}
                 click={click}
-                code={code}
                 setCode={setCode}
                 // setModalValues={setModalValues}
                 setViewClick={setViewClick}
@@ -101,7 +100,6 @@ export default function Fragments(){
       
             <Modal 
                 code={code}
-                setCode={setCode}
                 // codeSample={codeSample}
                 viewClick={viewClick}
                 setViewClick={setViewClick}

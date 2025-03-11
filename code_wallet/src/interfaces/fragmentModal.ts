@@ -5,5 +5,4 @@ export interface FragmentModal{
     viewClick: boolean,
     setViewClick: Dispatch<SetStateAction<boolean>>
     code: string,
-    setCode: Dispatch<SetStateAction<string>>,
 }

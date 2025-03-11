@@ -8,8 +8,6 @@ import Fragments from "./Pages/Fragments/Fragments";
 import Tags from "./Pages/Tags/Tags";
 import Info from "./Pages/Info/Info";
 import NewFragments from "./Pages/NewFragments/NewFragments";
-import Header from './Components/Header/Header';
-import NewRoute from './Pages/newRoute';
 // import Header from "./Components/Header/Header";
 
 export default function App() {

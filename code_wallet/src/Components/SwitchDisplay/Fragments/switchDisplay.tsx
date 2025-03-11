@@ -1,4 +1,3 @@
-import { useState } from "react"
 import Rows from "../../../assets/rows.svg"
 import SquaresWhite from "../../../assets/squares-white.svg"
 

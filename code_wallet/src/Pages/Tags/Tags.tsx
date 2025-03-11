@@ -59,7 +59,6 @@ export default function Tags(){
             <Header />
             
             <Title
-                tagValue={tagValue}
                 setTagValue={setTagValue}
                 modalsVisibility={modalsVisibility}
                 setModalsVisibility={setModalsVisibility} 
@@ -70,12 +69,9 @@ export default function Tags(){
             <Slider 
                 tags={tags}
                 fragments={fragments}
-                tagValue={tagValue}
                 setTagValue={setTagValue}
                 // currentTagIndex={currentTagIndex}
                 // setCurrentTagIndex={setCurrentTagIndex}
-                setTags={setTags}
-                setFragments={setFragments}
                 modalsVisibility={modalsVisibility}
                 setModalsVisibility={setModalsVisibility}
             />

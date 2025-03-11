@@ -1,4 +1,3 @@
-import { ITag } from "./tag";
 
 export interface IFragment{
     id: string,

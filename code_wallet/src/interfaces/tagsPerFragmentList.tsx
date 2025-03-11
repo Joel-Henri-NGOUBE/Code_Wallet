@@ -5,9 +5,7 @@ import { ITag } from "./tag";
 
 export interface tagsPerFragment {
     fragments: IFragment[],
-    setFragments: Dispatch<SetStateAction<IFragment[]>>,
     tags: ITag[],
-    tagValue: ITag,
     setTagValue: Dispatch<SetStateAction<ITag>>
     modalsVisibility: ModalsVisibility,
     setModalsVisibility: Dispatch<SetStateAction<ModalsVisibility>>

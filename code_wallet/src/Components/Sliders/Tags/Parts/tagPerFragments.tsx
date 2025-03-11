@@ -4,7 +4,7 @@ import { tagsPerFragment } from "../../../../interfaces/tagsPerFragmentList";
 import { IFragment } from "../../../../interfaces/fragment";
 import { ITag } from "../../../../interfaces/tag";
 
-export default function TagsPerFragment({tags, tagValue, setTagValue, fragments, setFragments, modalsVisibility, setModalsVisibility}: tagsPerFragment ): ReactElement{
+export default function TagsPerFragment({tags, setTagValue, fragments, modalsVisibility, setModalsVisibility}: tagsPerFragment ): ReactElement{
     
     function handleTagClick(tag: ITag){
         setModalsVisibility({edit: true, new: modalsVisibility.new});

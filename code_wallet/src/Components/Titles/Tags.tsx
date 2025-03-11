@@ -1,6 +1,6 @@
 import { IModalsVisibility } from "../../interfaces/modalsVisibility";
 
-export default function Title({tagValue, setTagValue, modalsVisibility, setModalsVisibility}: IModalsVisibility){
+export default function Title({setTagValue, modalsVisibility, setModalsVisibility}: IModalsVisibility){
 
     function handleClickNew(editVisibility: boolean){
         setModalsVisibility({new: true, edit: editVisibility})
