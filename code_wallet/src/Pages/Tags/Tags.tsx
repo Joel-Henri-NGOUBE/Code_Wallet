@@ -1,48 +1,90 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../../Components/Header/Header"
 // import EditTag from "../../Components/Modals/EditTag";
 import "./tags.css"
 // import NewTag from "../../Components/Modals/NewTag";
 // import AllTags from "../../Components/Sliders/Tags/Parts/allTags";
-// import TagsPerFragment from "../../Components/Sliders/Tags/Parts/tagPerFragments";
+// import fragments from "../../Components/Sliders/Tags/Parts/tagPerFragments";
 import SwitchDisplay from "../../Components/SwitchDisplay/Tags/switchDisplay";
 import Title from "../../Components/Titles/Tags";
 import Slider from "../../Components/Sliders/Tags/Slider/slider";
 import Modal from "../../Components/Modals/Tags/Container/modal";
+import { ModalsVisibility } from "../../types/modalsVisibility";
+import { IFragment } from "../../interfaces/fragment";
+import { ITag } from "../../interfaces/tag";
 
 export default function Tags(){
 
-   const tagsSample = ["Tagadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadadadaadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]
-   const tagsPerFragmentSample = [
-       {title: "Title", tags: ["Tagadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadadadaadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag", "Tag"]},
-       {title: "Title", tags: ["Tag", "Tag", "Tag"]},
-       {title: "Title", tags: ["Tag", "Tag", "Tag"]}
-    ]
+//    const tagsSample = [{id: 1, name: "Tagadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadadadaadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}]
+//    const fragmentsSample = [
+//        {id: "1", title: "Title", tags: [{id: 1, name: "Tagadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadadadaadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}]},
+//        {id: "2", title: "Title", tags: [{id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}]},
+//        {id: "3", title: "Title", tags: [{id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}]}
+//     ]
     
-    const [tagValue, setTagValue] = useState<string>("")
+    const [tagValue, setTagValue] = useState<ITag>({id: "", name: ""})
+
+    // const [currentTagIndex, setCurrentTagIndex] = useState< number | null >(null)
     
-    const [tags, setTags] = useState<string[]>(tagsSample)
+    // Tous les tags ou allTags
+    const [tags, setTags] = useState<ITag[]>([])
     
-    const [tagsPerFragment, setTagsPerFragment] = useState<IFragment[]>(tagsPerFragmentSample) 
+    // Variable Fragments
+    const [fragments, setFragments] = useState<IFragment[]>([])
+
+    const [modalsVisibility, setModalsVisibility] = useState<ModalsVisibility>({edit: false, new: false})
+
+    // const [clickManager, setClickManager] = useState<[]>()
+   
+    useEffect(() => {
+        async function getFragments() {
+            const a = await window.ipcRenderer.invoke("getFragments")
+            // console.log(a)
+            setFragments(a)
+        }
+        getFragments()
+    }, [])
+
+    useEffect(() => {
+        async function getTags() {
+            const a = await window.ipcRenderer.invoke("getTags")
+            // console.log(a)
+            setTags(a)
+        }
+        getTags()
+    }, [])
     
     return (
         <div className="tags-page">
             <Header />
             
-            <Title />
+            <Title
+                setTagValue={setTagValue}
+                modalsVisibility={modalsVisibility}
+                setModalsVisibility={setModalsVisibility} 
+            />
 
             <SwitchDisplay />
 
             <Slider 
                 tags={tags}
-                tagsPerFragment={tagsPerFragment}
-                setTags={setTags}
-                setTagsPerFragment={setTagsPerFragment}
+                fragments={fragments}
+                setTagValue={setTagValue}
+                // currentTagIndex={currentTagIndex}
+                // setCurrentTagIndex={setCurrentTagIndex}
+                modalsVisibility={modalsVisibility}
+                setModalsVisibility={setModalsVisibility}
             />
 
-            <Modal 
+            <Modal
                 tagValue={tagValue}
                 setTagValue={setTagValue}
+                setTags={setTags}
+                // currentTagIndex={currentTagIndex}
+                // setCurrentTagIndex={setCurrentTagIndex}
+                modalsVisibility={modalsVisibility}
+                setModalsVisibility={setModalsVisibility}
+                setFragments={setFragments}
             />
         </div>
     )

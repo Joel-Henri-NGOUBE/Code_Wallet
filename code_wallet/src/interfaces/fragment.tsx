@@ -1,4 +1,7 @@
-interface IFragment{
+
+export interface IFragment{
+    id: string,
     title: string,
-    tags: string[]
+    code: string,
+    tagIds: string[]
 }

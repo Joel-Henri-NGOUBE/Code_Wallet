@@ -1,8 +1,22 @@
-import { useEffect } from "react"
+import { Dispatch, MouseEvent, SetStateAction, useEffect } from "react"
 import Eye from "../../../assets/Eye.svg"
 import Remove from "../../../assets/remove.svg"
+import { Link } from "react-router-dom";
+import { IFragment } from "../../../interfaces/fragment";
+import { ITag } from "../../../interfaces/tag";
 
-export default function Fragment({index, fragment, click}: {index: number, fragment: IFragment, click: boolean[]}){
+interface FragmentProp{
+    tags: ITag[]
+    index: number,
+    fragment: IFragment,
+    setFragments: Dispatch<SetStateAction<IFragment[]>>,
+    click: boolean[],
+    setViewClick: Dispatch<SetStateAction<boolean>>,
+    setCode: Dispatch<SetStateAction<string>>
+    // setModalValues: Dispatch<SetStateAction<IFragment>>
+}
+
+export default function Fragment({tags, index, fragment, click, setViewClick, setCode, setFragments}: FragmentProp){
     
     useEffect(() => {
         if(!click[1]){
@@ -20,37 +34,65 @@ export default function Fragment({index, fragment, click}: {index: number, fragm
         }
     }, [click])
 
+    function handleClickEye(e: MouseEvent, fragment: IFragment){
+        e.preventDefault()
+        if(fragment.code) setCode(fragment.code)
+        setViewClick(true)
+        // setModalValues(fragment)
+    }
+
+    async function handleClickRemove(e: MouseEvent, fragment: IFragment){
+        e.preventDefault()
+        setFragments((f: IFragment[]) => f.filter((frag) => frag.id !== fragment.id))
+        await window.ipcRenderer.invoke("deleteFragment", fragment.id)
+        
+    }
+
     return(
-        click[1] ? (<div className="fragment" key={index}>
+        click[1] ? (<Link to={`newfragments/${fragment.id}`}><div className="fragment" key={index}>
                 <div className="top-background">
                     <div className="top">
                         <div className="icons">
-                            <img src={Eye} alt="eye" />
-                            <img src={Remove} alt="remove" width={20}/>
+                            <img src={Eye} alt="eye" onClick={(e) => handleClickEye(e, fragment)}/>
+                            <img src={Remove} alt="remove" width={20} onClick={(e: MouseEvent) => handleClickRemove(e, fragment)}/>
                         </div>
                         <span className="fragment-title">{fragment.title}</span>
                     </div>
                 </div>
                 <div className="bottom">
                     <div className="tags">
-                    {fragment.tags.map((tag, index) => <span key={index} className="tag">{tag}</span>)}
+                    {fragment.tagIds.map((tId) => {
+                        const name = tags.filter((t) => t.id === tId)[0].name
+                        // console.log(tId)
+                        // console.log(name)
+                        return <span key={tId} className="tag">{name}</span>
+                    }
+                    // <span key={index} className="tag" onClick={() => {handleTagClick(tags[index].name)}}>{tag.name}</span>
+                    )}
+                    {/* {fragment.tags.map((tag) => <span key={tag.id} className="tag">{tag.name}</span>)} */}
                     </div>
                 </div>
-            </div>) :
-        (<div className="fragment2" key={index}>
+            </div></Link>) :
+        (<Link to={`newfragments/${fragment.id}`}><div className="fragment2" key={index}>
                 <div className="left">
                         <span className="fragment-title">{fragment.title}</span>
                 </div>
                 <div className="right">
                     <div className="tags">
-                        {fragment.tags.map((tag, index) => <span key={index} className="tag">{tag}</span>)}
+                    {fragment.tagIds.map((tId) => {
+                        const name = tags.filter((t) => t.id === tId)[0].name
+                        return <span key={tId} className="tag">{name}</span>
+                    }
+                    // <span key={index} className="tag" onClick={() => {handleTagClick(tags[index].name)}}>{tag.name}</span>
+                    )}
+                        {/* {fragment.tags.map((tag) => <span key={tag.id} className="tag">{tag.name}</span>)} */}
                     </div>
                     <div className="icons">
-                        <img src={Eye} alt="eye" width={30}/>
-                        <img src={Remove} alt="remove" width={20}/>
+                        <img src={Eye} alt="eye" width={30} onClick={(e) => handleClickEye(e, fragment)}/>
+                        <img src={Remove} alt="remove" width={20} onClick={(e: MouseEvent) => handleClickRemove(e, fragment)}/>
                     </div>
                 </div>
                 
-            </div>)     
+            </div></Link>)     
     )
 }
