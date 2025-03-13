@@ -1,4 +1,3 @@
-// import { Link } from "react-router-dom";
 import { Dispatch, SetStateAction } from "react";
 import Fragment from "./Fragment/fragment";
 import { IFragment } from "../../interfaces/fragment";
@@ -9,7 +8,6 @@ interface FragmentsProp{
     fragments: IFragment[],
     setFragments: Dispatch<SetStateAction<IFragment[]>>,
     click: boolean[],
-    // setModalValues: Dispatch<SetStateAction<IFragment>>,
     setViewClick: Dispatch<SetStateAction<boolean>>,
     setCode: Dispatch<SetStateAction<string>>
 }

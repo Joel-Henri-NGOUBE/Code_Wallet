@@ -17,7 +17,6 @@ export default function Form({title, setTitle, fragments, setFragments, areOther
                 areOtherTagsVisible={areOtherTagsVisible}
                 setAreOtherTagsVisible={setAreOtherTagsVisible}
                 tags={tags}
-                // fragmentTags={fragmentTags}
                 otherTags={otherTags}
                 setFragmentTags={setFragmentTags}
             />

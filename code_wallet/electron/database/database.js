@@ -1,17 +1,10 @@
 const JSONdb = require("simple-json-db");
-// import JSONdb from "simple-json-db";
-
-// import uuid from "uuid"
 
 const uuid = require("uuid");
-
-// import JSONdb from 'simple-json-db';
-// const db = new JSONdb('./store/storage.json');
 
 
 const db = new JSONdb('./electron/database/database.json');
 
-// console.log(db.JSON())
 
 export const getTags = () => {
 
@@ -102,22 +95,3 @@ export const deleteFragment = (fragmentId) => {
     db.set("fragments", fragments.filter((f) => f.id !== fragmentId ))
 }
 
-// module.exports = {
-//     addFragment,
-//     addTag,
-//     deleteFragment,
-//     deleteTag,
-//     setFragment,
-//     setTag
-// }
-
-
-// console.log(db.get("tags"))
-
-// db.JSON({
-//     "fragments": ["hey"],
-//     "tags": ["ho","hey", "hoheeee"]
-// })
-// db.set("hey", "hey")
-// console.log(db.get("tags"))
-// console.log(db.set("tags", ["ho","hey", "yoooo"]))

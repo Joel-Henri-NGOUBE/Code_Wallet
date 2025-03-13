@@ -7,8 +7,6 @@ export interface tagEditor {
     tagValue: ITag,
     setTagValue: Dispatch<SetStateAction<ITag>>,
     setTags: Dispatch<SetStateAction<ITag[]>>
-    // currentTagIndex: number | null,
-    // setCurrentTagIndex: Dispatch<SetStateAction<number | null>>,
     modalsVisibility: ModalsVisibility,
     setModalsVisibility: Dispatch<SetStateAction<ModalsVisibility>>,
     setFragments: Dispatch<SetStateAction<IFragment[]>>

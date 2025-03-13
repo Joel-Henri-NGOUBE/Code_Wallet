@@ -7,7 +7,3 @@ export interface IModalsVisibility{
     modalsVisibility: ModalsVisibility
     setModalsVisibility:  Dispatch<SetStateAction<ModalsVisibility>>
 }
-
-// export interface Title extends IModalsVisibility{
-    
-// }

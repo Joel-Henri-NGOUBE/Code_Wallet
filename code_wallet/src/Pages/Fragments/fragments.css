@@ -93,6 +93,7 @@
     border: 2px solid var(--dark-gray);
     padding: 10px;
     border-radius: 10px;
+    color: initial;
 }
 
 .fragments-page .fragment2 .fragment-title{

@@ -28,11 +28,11 @@ let win: BrowserWindow | null
 
 function createWindow() {
   win = new BrowserWindow({
-    icon: path.join(process.env.VITE_PUBLIC, 'vite.svg'),
+    // icon: '/Code_Wallet.png',
+    icon: path.join(process.env.VITE_PUBLIC, 'Code-Wallet.png'),
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),
-      // main: 
     },
   })
 

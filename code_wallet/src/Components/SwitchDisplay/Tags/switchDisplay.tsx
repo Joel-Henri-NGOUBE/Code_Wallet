@@ -3,13 +3,11 @@ import { ReactElement } from "react";
 export default function SwitchDisplay(): ReactElement{
 
     function slide(){
-        // console.log("Hey")
         if(!(document.querySelector(".slider-wrapper")as HTMLElement).classList.contains("slide")){
             (document.querySelector(".slider-wrapper") as HTMLElement).classList.add("slide");
 
             (document.querySelector("#per-fragment") as HTMLElement).classList.add("per-fragment-increase");
             (document.querySelector("#all-tags") as HTMLElement).classList.add("all-tags-decrease")
-            // console.log("Slide Back removed")
             if((document.querySelector(".slider-wrapper") as HTMLElement).classList.contains("slide-back")){
                 (document.querySelector(".slider-wrapper") as HTMLElement).classList.remove("slide-back");
 
@@ -21,7 +19,6 @@ export default function SwitchDisplay(): ReactElement{
     }
 
     function slideBack(){
-        // console.log("Hey")
         if(!(document.querySelector(".slider-wrapper") as HTMLElement).classList.contains("slide-back")){
             (document.querySelector(".slider-wrapper") as HTMLElement).classList.add("slide-back");
 
@@ -36,7 +33,6 @@ export default function SwitchDisplay(): ReactElement{
             }
             console.log("Slide Back added")
         }
-        // document.querySelector(".slider-wrapper")as HTMLElement).classList.add("slide-back")
     }
 
     return (

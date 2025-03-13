@@ -15,7 +15,6 @@ export default function EditTag({tagValue, setTagValue, setTags, modalsVisibilit
             f.tagIds.includes(tagId) ? ({...f, tagIds: f.tagIds.filter(tI => tI !== tagId)}) : f
         ))
         await window.ipcRenderer.invoke("deleteTag", tagId)
-        // if (removal) console.log(window.location.href)
         setTags((tags) => tags.filter((t) => t.id !== tagId))
         setModalsVisibility(mV => ({edit: false, new: mV.new}))
     }

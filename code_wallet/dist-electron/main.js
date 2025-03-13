@@ -47566,11 +47566,11 @@ process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL ? path.join(process.env.APP_ROOT, 
 let win;
 function createWindow() {
   win = new electron.BrowserWindow({
-    icon: path.join(process.env.VITE_PUBLIC, "vite.svg"),
+    // icon: '/Code_Wallet.png',
+    icon: path.join(process.env.VITE_PUBLIC, "Code-Wallet.png"),
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname$1, "preload.mjs")
-      // main: 
     }
   });
   win.webContents.on("did-finish-load", () => {
