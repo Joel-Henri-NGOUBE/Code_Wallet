@@ -8,8 +8,6 @@ import { ITag } from "./tag";
 export interface Tags extends tagsList, tagsPerFragment{
     tags: ITag[],
     setTagValue: Dispatch<SetStateAction<ITag>>,
-    // currentTagIndex: number | null,
-    // setCurrentTagIndex: Dispatch<SetStateAction<number | null>>
     fragments: IFragment[],
     modalsVisibility: ModalsVisibility,
     setModalsVisibility: Dispatch<SetStateAction<ModalsVisibility>>

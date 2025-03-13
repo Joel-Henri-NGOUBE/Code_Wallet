@@ -6,8 +6,6 @@ export default function Modal({tagValue, setTagValue, setTags, modalsVisibility,
     return(
         <div className="modal-container" style={modalsVisibility.edit || modalsVisibility.new ? {display: "flex"} : {display: "none"}}>
             <NewTag 
-                // currentTagIndex={currentTagIndex}
-                // setCurrentTagIndex={setCurrentTagIndex}
                 tagValue={tagValue}
                 setTagValue={setTagValue}
                 setTags={setTags}
@@ -19,8 +17,6 @@ export default function Modal({tagValue, setTagValue, setTags, modalsVisibility,
                 tagValue={tagValue}
                 setTagValue={setTagValue}
                 setTags={setTags}
-                // currentTagIndex={currentTagIndex}
-                // setCurrentTagIndex={setCurrentTagIndex}
                 modalsVisibility={modalsVisibility}
                 setModalsVisibility={setModalsVisibility}
                 setFragments={setFragments}

@@ -1,9 +1,6 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-// import { describe, it } from "vitest";
-// import expect
+import { render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom';
 
-// import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import Info from "./Info";
 
@@ -23,6 +20,5 @@ describe("New Fragments component", () => {
         expect(presentation).toBeInTheDocument()
         expect(devInfo).toBeInTheDocument()
         expect(dataManagement).toBeInTheDocument()
-        // screen.debug()
     })
 })

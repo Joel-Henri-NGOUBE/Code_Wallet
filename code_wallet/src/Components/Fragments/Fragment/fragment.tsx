@@ -13,7 +13,6 @@ interface FragmentProp{
     click: boolean[],
     setViewClick: Dispatch<SetStateAction<boolean>>,
     setCode: Dispatch<SetStateAction<string>>
-    // setModalValues: Dispatch<SetStateAction<IFragment>>
 }
 
 export default function Fragment({tags, index, fragment, click, setViewClick, setCode, setFragments}: FragmentProp){
@@ -38,7 +37,6 @@ export default function Fragment({tags, index, fragment, click, setViewClick, se
         e.preventDefault()
         if(fragment.code) setCode(fragment.code)
         setViewClick(true)
-        // setModalValues(fragment)
     }
 
     async function handleClickRemove(e: MouseEvent, fragment: IFragment){
@@ -63,13 +61,9 @@ export default function Fragment({tags, index, fragment, click, setViewClick, se
                     <div className="tags">
                     {fragment.tagIds.map((tId) => {
                         const name = tags.filter((t) => t.id === tId)[0].name
-                        // console.log(tId)
-                        // console.log(name)
                         return <span key={tId} className="tag">{name}</span>
                     }
-                    // <span key={index} className="tag" onClick={() => {handleTagClick(tags[index].name)}}>{tag.name}</span>
                     )}
-                    {/* {fragment.tags.map((tag) => <span key={tag.id} className="tag">{tag.name}</span>)} */}
                     </div>
                 </div>
             </div></Link>) :
@@ -83,9 +77,7 @@ export default function Fragment({tags, index, fragment, click, setViewClick, se
                         const name = tags.filter((t) => t.id === tId)[0].name
                         return <span key={tId} className="tag">{name}</span>
                     }
-                    // <span key={index} className="tag" onClick={() => {handleTagClick(tags[index].name)}}>{tag.name}</span>
                     )}
-                        {/* {fragment.tags.map((tag) => <span key={tag.id} className="tag">{tag.name}</span>)} */}
                     </div>
                     <div className="icons">
                         <img src={Eye} alt="eye" width={30} onClick={(e) => handleClickEye(e, fragment)}/>

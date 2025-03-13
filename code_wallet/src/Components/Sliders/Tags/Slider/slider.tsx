@@ -11,8 +11,6 @@ export default function Slider({tags, fragments, setTagValue, modalsVisibility, 
                 {tags.length ? <><AllTags
                     tags={tags}
                     setTagValue={setTagValue}
-                    // currentTagIndex={currentTagIndex} // Inutile
-                    // setCurrentTagIndex={setCurrentTagIndex} // Inutile
                     modalsVisibility={modalsVisibility}
                     setModalsVisibility={setModalsVisibility}
                 />

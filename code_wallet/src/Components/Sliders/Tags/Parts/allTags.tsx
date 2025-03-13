@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-// import { tagEditor } from "../../interfaces/tagEditor";
 import { tagsList } from "../../../../interfaces/tagsList";
 import { ITag } from "../../../../interfaces/tag";
 
@@ -9,7 +8,6 @@ export default function AllTags({tags, setTagValue, modalsVisibility, setModalsV
         setModalsVisibility({edit: true, new: modalsVisibility.new});
         setTagValue(tag)
         console.log(tag)
-        // console.log(modalsVisibility)
     }
 
     return (

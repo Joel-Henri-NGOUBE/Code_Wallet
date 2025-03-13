@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 import Header from "../../Components/Header/Header"
-// import EditTag from "../../Components/Modals/EditTag";
 import "./tags.css"
-// import NewTag from "../../Components/Modals/NewTag";
-// import AllTags from "../../Components/Sliders/Tags/Parts/allTags";
-// import fragments from "../../Components/Sliders/Tags/Parts/tagPerFragments";
 import SwitchDisplay from "../../Components/SwitchDisplay/Tags/switchDisplay";
 import Title from "../../Components/Titles/Tags";
 import Slider from "../../Components/Sliders/Tags/Slider/slider";
@@ -14,32 +10,20 @@ import { IFragment } from "../../interfaces/fragment";
 import { ITag } from "../../interfaces/tag";
 
 export default function Tags(){
-
-//    const tagsSample = [{id: 1, name: "Tagadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadadadaadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}]
-//    const fragmentsSample = [
-//        {id: "1", title: "Title", tags: [{id: 1, name: "Tagadadadadadadadadadadadadadadadadadadadadadadadaadadadadadadadadadaadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadad"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}]},
-//        {id: "2", title: "Title", tags: [{id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}]},
-//        {id: "3", title: "Title", tags: [{id: 1, name: "Tag"}, {id: 1, name: "Tag"}, {id: 1, name: "Tag"}]}
-//     ]
     
     const [tagValue, setTagValue] = useState<ITag>({id: "", name: ""})
 
-    // const [currentTagIndex, setCurrentTagIndex] = useState< number | null >(null)
     
-    // Tous les tags ou allTags
     const [tags, setTags] = useState<ITag[]>([])
     
-    // Variable Fragments
     const [fragments, setFragments] = useState<IFragment[]>([])
 
     const [modalsVisibility, setModalsVisibility] = useState<ModalsVisibility>({edit: false, new: false})
 
-    // const [clickManager, setClickManager] = useState<[]>()
    
     useEffect(() => {
         async function getFragments() {
             const a = await window.ipcRenderer.invoke("getFragments")
-            // console.log(a)
             setFragments(a)
         }
         getFragments()
@@ -48,7 +32,6 @@ export default function Tags(){
     useEffect(() => {
         async function getTags() {
             const a = await window.ipcRenderer.invoke("getTags")
-            // console.log(a)
             setTags(a)
         }
         getTags()
@@ -70,8 +53,6 @@ export default function Tags(){
                 tags={tags}
                 fragments={fragments}
                 setTagValue={setTagValue}
-                // currentTagIndex={currentTagIndex}
-                // setCurrentTagIndex={setCurrentTagIndex}
                 modalsVisibility={modalsVisibility}
                 setModalsVisibility={setModalsVisibility}
             />
@@ -80,8 +61,6 @@ export default function Tags(){
                 tagValue={tagValue}
                 setTagValue={setTagValue}
                 setTags={setTags}
-                // currentTagIndex={currentTagIndex}
-                // setCurrentTagIndex={setCurrentTagIndex}
                 modalsVisibility={modalsVisibility}
                 setModalsVisibility={setModalsVisibility}
                 setFragments={setFragments}
