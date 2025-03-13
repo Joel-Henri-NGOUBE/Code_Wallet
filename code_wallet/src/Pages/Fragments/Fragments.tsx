@@ -34,7 +34,7 @@ export default function Fragments(){
 
     useEffect(() => {
         async function getFragments() {
-            const a = await window.ipcRenderer.invoke("getFragments")
+            const a: IFragment[] = await window.ipcRenderer.invoke("getFragments")
             setFragments(a)
         }
         getFragments()
@@ -42,7 +42,7 @@ export default function Fragments(){
 
     useEffect(() => {
             async function getTags() {
-                const a = await window.ipcRenderer.invoke("getTags")
+                const a: ITag[] = await window.ipcRenderer.invoke("getTags")
                 setTags(a)
             }
             getTags()
