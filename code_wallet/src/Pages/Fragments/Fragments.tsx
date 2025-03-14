@@ -18,9 +18,7 @@ export default function Fragments(){
         if(!click[0]){
             setClick([!click[0], !click[1]])
         }
-        const a = await window.ipcRenderer.invoke("bonjour", "bonjour")
 
-        console.log(a)
     }
     function handleClickSquares(click: boolean[]){
         if(!click[1]){
@@ -35,17 +33,19 @@ export default function Fragments(){
     useEffect(() => {
         async function getFragments() {
             const a: IFragment[] = await window.ipcRenderer.invoke("getFragments")
+            console.log(a)
             setFragments(a)
         }
         getFragments()
     }, [])
 
     useEffect(() => {
-            async function getTags() {
-                const a: ITag[] = await window.ipcRenderer.invoke("getTags")
-                setTags(a)
-            }
-            getTags()
+        async function getTags() {
+            const a: ITag[] = await window.ipcRenderer.invoke("getTags")
+            console.log(a)
+            setTags(a)
+        }
+        getTags()
         }, [])
 
     return (

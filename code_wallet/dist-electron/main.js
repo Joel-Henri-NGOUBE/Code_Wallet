@@ -5,9 +5,13 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const electron = require("electron");
 const node_url = require("node:url");
+const fs$1 = require("fs");
 const path = require("node:path");
 var _documentCurrentScript = typeof document !== "undefined" ? document.currentScript : null;
 var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
+function getDefaultExportFromCjs(x) {
+  return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
+}
 var jsxRuntime = { exports: {} };
 var reactJsxRuntime_production_min = {};
 var react = { exports: {} };
@@ -47493,9 +47497,126 @@ const { Router, registerRoute } = createElectronRouter({
     ids: ["main"]
   }
 });
-const JSONdb = require("simple-json-db");
+const fs = fs$1;
+const defaultOptions = {
+  asyncWrite: false,
+  syncOnWrite: true,
+  jsonSpaces: 4,
+  stringify: JSON.stringify,
+  parse: JSON.parse
+};
+let validateJSON = function(fileContent) {
+  try {
+    this.options.parse(fileContent);
+  } catch (e) {
+    console.error("Given filePath is not empty and its content is not valid JSON.");
+    throw e;
+  }
+  return true;
+};
+function JSONdb(filePath, options) {
+  if (!filePath || !filePath.length) {
+    throw new Error("Missing file path argument.");
+  } else {
+    this.filePath = filePath;
+  }
+  if (options) {
+    for (let key in defaultOptions) {
+      if (!options.hasOwnProperty(key)) options[key] = defaultOptions[key];
+    }
+    this.options = options;
+  } else {
+    this.options = defaultOptions;
+  }
+  this.storage = {};
+  let stats;
+  try {
+    stats = fs.statSync(filePath);
+  } catch (err) {
+    if (err.code === "ENOENT") {
+      return;
+    } else if (err.code === "EACCES") {
+      throw new Error(`Cannot access path "${filePath}".`);
+    } else {
+      throw new Error(`Error while checking for existence of path "${filePath}": ${err}`);
+    }
+  }
+  try {
+    fs.accessSync(filePath, fs.constants.R_OK | fs.constants.W_OK);
+  } catch (err) {
+    throw new Error(`Cannot read & write on path "${filePath}". Check permissions!`);
+  }
+  if (stats.size > 0) {
+    let data2;
+    try {
+      data2 = fs.readFileSync(filePath);
+    } catch (err) {
+      throw err;
+    }
+    if (validateJSON.bind(this)(data2)) this.storage = this.options.parse(data2);
+  }
+}
+JSONdb.prototype.set = function(key, value) {
+  this.storage[key] = value;
+  if (this.options && this.options.syncOnWrite) this.sync();
+};
+JSONdb.prototype.get = function(key) {
+  return this.storage.hasOwnProperty(key) ? this.storage[key] : void 0;
+};
+JSONdb.prototype.has = function(key) {
+  return this.storage.hasOwnProperty(key);
+};
+JSONdb.prototype.delete = function(key) {
+  let retVal = this.storage.hasOwnProperty(key) ? delete this.storage[key] : void 0;
+  if (this.options && this.options.syncOnWrite) this.sync();
+  return retVal;
+};
+JSONdb.prototype.deleteAll = function() {
+  for (var key in this.storage) {
+    this.delete(key);
+  }
+  return this;
+};
+JSONdb.prototype.sync = function() {
+  if (this.options && this.options.asyncWrite) {
+    fs.writeFile(this.filePath, this.options.stringify(this.storage, null, this.options.jsonSpaces), (err) => {
+      if (err) throw err;
+    });
+  } else {
+    try {
+      fs.writeFileSync(this.filePath, this.options.stringify(this.storage, null, this.options.jsonSpaces));
+    } catch (err) {
+      if (err.code === "EACCES") {
+        throw new Error(`Cannot access path "${this.filePath}".`);
+      } else {
+        throw new Error(`Error while writing to path "${this.filePath}": ${err}`);
+      }
+    }
+  }
+};
+JSONdb.prototype.JSON = function(storage) {
+  if (storage) {
+    try {
+      JSON.parse(this.options.stringify(storage));
+      this.storage = storage;
+    } catch (err) {
+      throw new Error("Given parameter is not a valid JSON object.");
+    }
+  }
+  return JSON.parse(this.options.stringify(this.storage));
+};
+var simpleJsonDb = JSONdb;
+const JSONdb$1 = /* @__PURE__ */ getDefaultExportFromCjs(simpleJsonDb);
 const uuid = require("uuid");
-const db = new JSONdb("./electron/database/database.json");
+const db = new JSONdb$1(path.join(__dirname, "database.json"));
+const dbInitialization = () => {
+  if (!Object.keys(db.JSON()).length) {
+    db.JSON({
+      fragments: [],
+      tags: []
+    });
+  }
+};
 const getTags = () => {
   return db.get("tags");
 };
@@ -47504,7 +47625,8 @@ const getFragments = () => {
 };
 const addTag = (name) => {
   let tags = db.get("tags");
-  const existingNameCount = tags.filter((tag) => tag.name === name).length;
+  console.log(tags);
+  const existingNameCount = tags == null ? void 0 : tags.filter((tag) => tag.name === name).length;
   const newTag = {
     id: uuid.v1(),
     name
@@ -47520,7 +47642,7 @@ const addTag = (name) => {
 const addFragment = (fragment) => {
   let fragments = db.get("fragments");
   if (fragment.title && fragment.code) {
-    const existingTitleCount = fragments.filter((frag) => frag.title === fragment.title).length;
+    const existingTitleCount = fragments == null ? void 0 : fragments.filter((frag) => frag.title === fragment.title).length;
     if (!existingTitleCount) {
       fragments.push({
         id: uuid.v1(),
@@ -47534,28 +47656,28 @@ const addFragment = (fragment) => {
 };
 const setTag = (tag) => {
   let tags = db.get("tags");
-  db.set("tags", tags.map(
+  db.set("tags", tags == null ? void 0 : tags.map(
     (t) => t.id === tag.id ? tag : t
   ));
 };
 const setFragment = (fragment) => {
   let fragments = db.get("fragments");
-  db.set("fragments", fragments.map(
+  db.set("fragments", fragments == null ? void 0 : fragments.map(
     (f) => f.id === fragment.id ? fragment : f
   ));
 };
 const deleteTag = (tagId) => {
   let tags = db.get("tags");
   let fragments = db.get("fragments");
-  db.set("fragments", fragments.map(
+  db.set("fragments", fragments == null ? void 0 : fragments.map(
     (f) => f.tagIds.includes(tagId) ? { ...f, tagIds: f.tagIds.filter((tI) => tI !== tagId) } : f
   ));
-  db.set("tags", tags.filter((t) => t.id !== tagId));
+  db.set("tags", tags == null ? void 0 : tags.filter((t) => t.id !== tagId));
   return "Tag Deleted";
 };
 const deleteFragment = (fragmentId) => {
   let fragments = db.get("fragments");
-  db.set("fragments", fragments.filter((f) => f.id !== fragmentId));
+  db.set("fragments", fragments == null ? void 0 : fragments.filter((f) => f.id !== fragmentId));
 };
 const __dirname$1 = path.dirname(node_url.fileURLToPath(typeof document === "undefined" ? require("url").pathToFileURL(__filename).href : _documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === "SCRIPT" && _documentCurrentScript.src || new URL("main.js", document.baseURI).href));
 process.env.APP_ROOT = path.join(__dirname$1, "..");
@@ -47564,6 +47686,16 @@ const MAIN_DIST = path.join(process.env.APP_ROOT, "dist-electron");
 const RENDERER_DIST = path.join(process.env.APP_ROOT, "dist");
 process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL ? path.join(process.env.APP_ROOT, "public") : RENDERER_DIST;
 let win;
+if (!fs$1.existsSync(path.join(MAIN_DIST, "database.json"))) {
+  fs$1.writeFile(path.join(MAIN_DIST, "database.json"), JSON.stringify({}), (error) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Le fichier a été créé avec succès");
+    }
+  });
+}
+dbInitialization();
 function createWindow() {
   win = new electron.BrowserWindow({
     // icon: '/Code_Wallet.png',
@@ -47571,20 +47703,23 @@ function createWindow() {
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname$1, "preload.mjs")
+      // webSecurity: false
     }
   });
   win.webContents.on("did-finish-load", () => {
+    console.log("finished");
     win == null ? void 0 : win.webContents.send("main-process-message", (/* @__PURE__ */ new Date()).toLocaleString());
   });
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL);
   } else {
+    console.log("bonsoir");
     win.loadFile(path.join(RENDERER_DIST, "index.html"));
   }
   registerRoute({
     id: "main",
     browserWindow: win,
-    htmlFile: path.join(__dirname$1, "/index.html")
+    htmlFile: path.join(RENDERER_DIST, "index.html")
   });
 }
 electron.app.on("activate", () => {

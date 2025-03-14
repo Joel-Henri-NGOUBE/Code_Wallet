@@ -13,7 +13,7 @@ export default function AllTags({tags, setTagValue, modalsVisibility, setModalsV
     return (
         <div className="tags">
             <div className="tags-wrapper">
-            {tags.map((tag, index) => <span key={index} className="tag" onClick={() => {handleTagClick(tags[index])}}>{tag.name}</span>)}
+            {tags?.map((tag, index) => <span key={index} className="tag" onClick={() => {handleTagClick(tags[index])}}>{tag.name}</span>)}
             </div>
         </div>
     )

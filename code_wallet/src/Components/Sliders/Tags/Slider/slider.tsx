@@ -8,7 +8,7 @@ export default function Slider({tags, fragments, setTagValue, modalsVisibility, 
 
             <div className="slider-wrapper">
 
-                {tags.length ? <><AllTags
+                {tags?.length ? <><AllTags
                     tags={tags}
                     setTagValue={setTagValue}
                     modalsVisibility={modalsVisibility}

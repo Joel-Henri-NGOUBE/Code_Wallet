@@ -6,16 +6,16 @@ export default function EditTag({tagValue, setTagValue, setTags, modalsVisibilit
 
     async function handleClickSave(tagValue: ITag){
         await window.ipcRenderer.invoke("setTag", tagValue)
-        setTags((tags) => tags.map((t) => t.id === tagValue.id ? tagValue : t))
+        setTags((tags) => tags?.map((t) => t.id === tagValue.id ? tagValue : t))
         setModalsVisibility(mV => ({edit: false, new: mV.new}))
     }
 
     async function handleClickDelete(tagId: string){
-        setFragments((fs) => fs.map((f) => 
-            f.tagIds.includes(tagId) ? ({...f, tagIds: f.tagIds.filter(tI => tI !== tagId)}) : f
+        setFragments((fs) => fs?.map((f) => 
+            f.tagIds?.includes(tagId) ? ({...f, tagIds: f.tagIds?.filter(tI => tI !== tagId)}) : f
         ))
         await window.ipcRenderer.invoke("deleteTag", tagId)
-        setTags((tags) => tags.filter((t) => t.id !== tagId))
+        setTags((tags) => tags?.filter((t) => t.id !== tagId))
         setModalsVisibility(mV => ({edit: false, new: mV.new}))
     }
 
