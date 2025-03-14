@@ -14,13 +14,13 @@ interface FragmentsProp{
 
 export default function FragmentsComponent({tags, fragments, setFragments, click, setViewClick, setCode}: FragmentsProp){
     return(
-        fragments.length 
+        fragments?.length 
         ? (click[1] ?
             (<div className="fragments">
-                {fragments.map((fragment, index) => <Fragment tags={tags} index={index} fragment={fragment} setFragments={setFragments} click={click} setViewClick={setViewClick} setCode={setCode}/>)}
+                {fragments?.map((fragment, index) => <Fragment key={fragment.id} tags={tags} index={index} fragment={fragment} setFragments={setFragments} click={click} setViewClick={setViewClick} setCode={setCode}/>)}
             </div>) :
             (<div className="fragments2">
-                {fragments.map((fragment, index) => <Fragment tags={tags} index={index} fragment={fragment} setFragments={setFragments} click={click} setViewClick={setViewClick} setCode={setCode}/>)}
+                {fragments?.map((fragment, index) => <Fragment key={fragment.id} tags={tags} index={index} fragment={fragment} setFragments={setFragments} click={click} setViewClick={setViewClick} setCode={setCode}/>)}
             </div>))
         : <p>No fragment yet</p>
     )

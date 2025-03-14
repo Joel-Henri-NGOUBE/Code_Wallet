@@ -12,12 +12,12 @@ export default function TagsPerFragment({tags, setTagValue, fragments, modalsVis
 
     return (
         <div className="tags2">     
-            {fragments.map((fragment: IFragment) => (
+            {fragments?.map((fragment: IFragment) => (
                 <div className="fragment">
                     <h2 className="fragment-title">{fragment.title}</h2>
                     <div className="tags-wrapper2">
-                    {fragment.tagIds.map((tId, index) => {
-                        const tag = tags.filter((t) => t.id === tId)[0]
+                    {fragment.tagIds?.map((tId, index) => {
+                        const tag = tags?.filter((t) => t.id === tId)[0]
                         return <span key={index} className="tag" onClick={() => {handleTagClick(tag)}}>{tag.name}</span>
                     }
                     )}

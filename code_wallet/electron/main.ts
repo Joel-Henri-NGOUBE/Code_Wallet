@@ -1,8 +1,9 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
 import { fileURLToPath } from 'node:url'
+import fs from "fs"
 import path from 'node:path'
 import { registerRoute } from '../src/lib/electron-router-dom'
-import { getFragments, getTags, addFragment, addTag, setTag, setFragment, deleteTag, deleteFragment } from "./database/database.js"
+import { getFragments, getTags, addFragment, addTag, setTag, setFragment, deleteTag, deleteFragment, dbInitialization } from "./database/database.js"
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -26,6 +27,19 @@ process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL ? path.join(process.env.APP_ROOT, 
 
 let win: BrowserWindow | null
 
+if(!fs.existsSync(path.join(MAIN_DIST, "database.json"))){
+  fs.writeFile(path.join(MAIN_DIST, "database.json"), JSON.stringify({}), (error) => {
+      if (error){
+          console.log(error)
+      }
+      else{
+          console.log("Le fichier a été créé avec succès")
+      }
+  })
+}
+
+dbInitialization()
+
 function createWindow() {
   win = new BrowserWindow({
     // icon: '/Code_Wallet.png',
@@ -33,25 +47,33 @@ function createWindow() {
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),
+      // webSecurity: false
     },
   })
 
   // Test active push message to Renderer-process.
   win.webContents.on('did-finish-load', () => {
+    console.log("finished")
     win?.webContents.send('main-process-message', (new Date).toLocaleString())
   })
-
+// console.log(process.env.)
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL)
+    // console.log("bonjour")
+    // console.log(VITE_DEV_SERVER_URL)
+    // console.log(path.join(__dirname, 'index.html'))
+    // console.log(process.env.VITE_PUBLIC)
+    // console.log(RENDERER_DIST)
   } else {
     // win.loadFile('dist/index.html')
+    console.log("bonsoir")
     win.loadFile(path.join(RENDERER_DIST, 'index.html'))
   }
 
   registerRoute({
     id: "main",
     browserWindow: win,
-    htmlFile: path.join(__dirname, '/index.html')
+    htmlFile: path.join(RENDERER_DIST, 'index.html')
   })
 }
 

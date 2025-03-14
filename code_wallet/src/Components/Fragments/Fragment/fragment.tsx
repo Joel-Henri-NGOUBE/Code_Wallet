@@ -41,7 +41,7 @@ export default function Fragment({tags, index, fragment, click, setViewClick, se
 
     async function handleClickRemove(e: MouseEvent, fragment: IFragment){
         e.preventDefault()
-        setFragments((f: IFragment[]) => f.filter((frag) => frag.id !== fragment.id))
+        setFragments((f: IFragment[]) => f?.filter((frag) => frag.id !== fragment.id))
         await window.ipcRenderer.invoke("deleteFragment", fragment.id)
         
     }
@@ -59,8 +59,8 @@ export default function Fragment({tags, index, fragment, click, setViewClick, se
                 </div>
                 <div className="bottom">
                     <div className="tags">
-                    {fragment.tagIds.map((tId) => {
-                        const name = tags.filter((t) => t.id === tId)[0].name
+                    {fragment.tagIds?.map((tId) => {
+                        const name = tags?.filter((t) => t.id === tId)[0].name
                         return <span key={tId} className="tag">{name}</span>
                     }
                     )}
@@ -73,8 +73,8 @@ export default function Fragment({tags, index, fragment, click, setViewClick, se
                 </div>
                 <div className="right">
                     <div className="tags">
-                    {fragment.tagIds.map((tId) => {
-                        const name = tags.filter((t) => t.id === tId)[0].name
+                    {fragment.tagIds?.map((tId) => {
+                        const name = tags?.filter((t) => t.id === tId)[0].name
                         return <span key={tId} className="tag">{name}</span>
                     }
                     )}

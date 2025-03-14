@@ -11,7 +11,7 @@ export default function Buttons({id, title, code, tags}: {id?: string, title: st
     }
     
     async function handleClickSave(title: string, code: string, tags: ITag[], id?: string){
-        const tagIds = tags.map(tI => tI.id)
+        const tagIds = tags?.map(tI => tI.id)
         id ? await window.ipcRenderer.invoke("setFragment", {id: id, title: title, code: code, tagIds: tagIds}) : await window.ipcRenderer.invoke("addFragment", {title: title, code: code, tagIds: tagIds})
         navigate("/")
     }

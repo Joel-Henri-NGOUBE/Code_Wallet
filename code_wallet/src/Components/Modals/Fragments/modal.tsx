@@ -10,11 +10,11 @@ export default function Modal({ viewClick, setViewClick, code}: FragmentModal){
                     <h2>The actual title</h2>
                     <p className="close" onClick={() => setViewClick(false)}>X</p>
                     <div className="code">
-                        <p id="code">
+                        <div id="code">
                             <SyntaxHighlighter style={docco} showLineNumbers={true}>
                                 {code}
                             </SyntaxHighlighter>
-                        </p>
+                        </div>
                     </div>
                     <button id="copy" onClick={() => navigator.clipboard.writeText(code)}>Copy</button>
                 </div>
